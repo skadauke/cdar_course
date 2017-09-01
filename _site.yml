@@ -1,0 +1,10 @@
+name: "cdar_course"
+navbar:
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Intro"
+      href: 00_intro.html
+    - text: "Session 1"
+      href: 01_basics.html
+output_dir: "."

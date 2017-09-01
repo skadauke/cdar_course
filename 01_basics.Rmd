@@ -1,0 +1,57 @@
+---
+output: html_document
+---
+
+## Session 1: Getting Started with R, RStudio, and swirl
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| 9/6/17  | 4 PM      | GRJ245   |
+
+### Objectives
+
+* Gain an appreciation for the "Flipped Classroom" teaching model
+*	Install R, RStudio, and Swirl on your computer
+*	Become familiar with the following aspects of R:
+    *	The interactive console
+    * Getting help
+    * Arithmetic
+    * Variables
+    * Vectors
+    * Function calls
+    * The working directory and files
+    * Creating sequences of consecutive and repeated numbers
+
+### Pre-Session Activities
+
+Please read the following:
+
+*	**[6 min]** Saying Goodbye to Lectures in Medical School — Paradigm Shift or Passing Fad? <http://www.nejm.org/doi/full/10.1056/NEJMp1706474>
+
+Please view the following:
+
+*	**[6 min]** Blended Learning & Flipped Classroom (Osmosis.org):  <https://www.youtube.com/watch?v=paQCE58334M>
+*	**[5 min]** Scripting Your Analysis (Roger Peng, JHU Biostatistics): 
+<https://www.youtube.com/watch?v=olNgpYeTALk>
+
+Please install R, RStudio, and Swirl on your personal computer:
+
+*	R: <https://cloud.r-project.org/>
+*	RStudio (the free Desktop version): <https://www.rstudio.com/products/rstudio/download/>
+*	Swirl: To install swirl and the "R Programming" course that will be covered in the first few sessions, type the following into the interactive R console:
+
+```{r, eval=FALSE}
+install.packages(“swirl”)
+library(swirl)
+install_course_github("swirldev", "R_Programming_E")
+swirl()
+```
+
+Please complete the following swirl modules. 
+
+*	R Programming: Basic Building Blocks
+*	R Programming: Workspace and Files
+*	R Programming: Sequences of Numbers
+
+At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: [skadauke@gmail.com](mailto:skadauke@mgh.harvard.edu).
+

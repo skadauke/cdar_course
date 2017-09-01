@@ -1,0 +1,56 @@
+---
+output: html_document
+---
+
+<!-- 
+
+TODO
+
+- More links
+- Create about.Rmd page? Or link to about.me? Should have a CV, picture, Github, and short bio
+
+-->
+
+## Reproducible Clinical Data Analysis with R
+
+[Stephan Kadauke, MD, PhD](skadauke@mgh.harvard.edu)   
+Massachusetts General Hospital   
+Boston, MA
+
+### Course Description
+
+<!-- Intro pgh: about reasons why clinicians generally don't want to script their analyses -->
+
+The explosive growth in clinical data requires the judicious use of more sophisticated analysis tools than was necessary in the past. There is a current and ongoing discourse about the characteristics of best practices in data analysis. Chief among them are: 
+
+* **Reproducibility**: an independent investigator who possesses the raw data should be able to perform the same data analytic steps and arrive at the same result.
+*	**Translatability**: it should be possible to reuse or modify a data analytic workflow to accommodate new or similar data.
+*	**Ease of communication**: a data analysis should be presented in a way that explains both the process and the results of the analysis in a complete and meaningful way.
+
+This course will introduce participants to **literate programming** (LP), in which explanatory comments are interspersed with snippets of code in a single document. LP allows for documentation of data collection details as well as the rationale for specific analysis design decisions right along with code that precisely documents the data analysis. LP eases review of the data analysis for methodological issues and data errors. LP analyses are reproducible and can easily be modified to accommodate new or updated data.
+
+We will use the R statistical programming language, because it is free, cross-platform, widely used, and supports LP via the **knitr** and **R Markdown** packages. 
+
+
+### Course Objectives
+
+The goal of the proposed course is to introduce clinicians to a reproducible and translatable workflow for clinical data analysis. Clear communication of the results of the analysis will be emphasized as well. By the end of the course, participants will be able to use R Markdown to create fully reproducible data analysis reports.
+
+
+### Requirements
+
+*	This course is built on the **flipped classroom** model in which specific activities (readings, videos, etc.) are assigned prior to each session. **The in-person sessions will closely follow the assigned material, and participants will probably not be able to follow class if they did not complete the assignments beforehand.**
+*	**I highly recommend you bring a personal laptop to class.** It doesn’t matter which operating system it runs, as all the software discussed in this course runs on both Windows and macOS. While it will be technically possible to follow the in-person sessions without one, the learning experience will much improved with a laptop.
+
+### Schedule
+
+| Date    | Time      | Location | Session                                      | 
+|---------|-----------|----------|----------------------------------------------|
+| 9/1/17  | 1 PM      | GRJ245   | [Introductory Lecture: Reproducibility and Literate Programming][1] |
+| 9/6/17  | 4 PM      | GRJ245   | [Session 1: Getting Started with R, RStudio, and swirl][2] |
+| 9/8/17  | 10 AM     | GRJ245   | Session 2                                    |
+| 9/11/17 | 2 PM      | GRJ245   | Session 3                                    |
+| 9/15/17 | 10 AM     | GRJ245   | Session 4                                    |
+
+[1]: 00_intro.html
+[2]: 01_basics.html

@@ -1,0 +1,24 @@
+# My First R Markdown Document!
+## More hashtags = smaller header
+
+Here is some text and a list:
+
+* It's *easy* to style text for **emphasis**.
+* It's also easy to add a [link](http://www.massgeneral.org).
+
+```{r}
+x <- rnorm(100)
+summary(x)
+```
+
+The first random number in `x` is `r x[1]`.
+
+## Including plots
+
+The `echo = FALSE` option hides R code.
+
+```{r, echo = FALSE}
+hist(x)
+```
+
+

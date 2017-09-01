@@ -1,0 +1,33 @@
+---
+output: html_document
+---
+
+Session 3 – Monday 9/11, 2 PM, GRJ245
+
+Objectives:
+•	Learn how to create and “knit” a simple R Markdown document
+•	Become familiar with the following aspects of R:
+o	Subsetting vectors
+o	Data frames
+o	Subsetting data frames
+o	Looking at a data frame to understand its structure and contents
+
+Please view the following*:
+•	Literate Statistical Programming with knitr (Roger Peng): https://www.youtube.com/watch?v=YcJb1HBc-1Q
+•	R Markdown Demonstration (Roger Peng): https://www.youtube.com/watch?v=PKsBiCUdS3w
+* Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.
+
+I recommend downloading and printing the R Markdown Cheat Sheet as a reference:
+https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf
+
+Swirl modules:
+1.	R Programming: Subsetting Vectors
+2.	R Programming: Matrices and Data Frames
+3.	R Programming: Looking at Data
+
+
+
+In class: Reproduce the “My First Markdown Document!” they saw in the intro lecture
+
+Session 4 – Friday 9/15, 10 AM, GRJ245
+

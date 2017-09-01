@@ -1,0 +1,37 @@
+---
+output: html_document
+---
+
+<!-- 
+
+INSTRUCTIONS TO THE INSTRUCTOR:
+
+- Before the session send an email to all participants letting them know about the course website
+- At the beginning of the session unlock materials for the next lesson (see below)
+- After the lecture:
+    - Emphasize the importance of doing pre-class assignments
+    -	Tell people to bring a laptop for future sessions
+    -	Tell people to let me know (email) if they have any problems with getting to any of the resources
+
+Unlocking lessons:
+- _site.yml: remove comments for next lesson
+- index.Rmd: add link to next lesson
+
+-->
+
+## Introductory Lecture: Reproducibility and Literate Programming
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| 9/1/17  | 1 PM      | GRJ245   |
+
+### Objectives
+
+*	Gain an appreciation for how important reproducibility is in clinical data analyses, both for big and small data problems
+*	Become familiar with the concept of literate programming
+*	Become familiar with the elements of an R Markdown document
+
+### Materials
+
+* [Lecture slides (.pptx)](00_slides.pptx)
+* [Demo R Markdown Document](00_myfirstrmarkdowndoc.Rmd)
