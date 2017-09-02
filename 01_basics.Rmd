@@ -53,5 +53,5 @@ Please complete the following swirl modules.
 *	R Programming: Workspace and Files
 *	R Programming: Sequences of Numbers
 
-At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: [skadauke@gmail.com](mailto:skadauke@mgh.harvard.edu).
+At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: [skadauke@mgh.harvard.edu](mailto:skadauke@mgh.harvard.edu).
 
