@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 .DS_Store
+
+# Don't publish class roster on github
+roster*.*

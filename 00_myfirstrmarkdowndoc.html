@@ -200,70 +200,25 @@ $(document).ready(function () {
 </div>
 
 
-<div id="session-1-getting-started-with-r-rstudio-and-swirl" class="section level2">
-<h2>Session 1: Getting Started with R, RStudio, and swirl</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Date</th>
-<th>Time</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>9/6/17</td>
-<td>4 PM</td>
-<td>GRJ245</td>
-</tr>
-</tbody>
-</table>
-<div id="objectives" class="section level3">
-<h3>Objectives</h3>
+<div id="my-first-r-markdown-document" class="section level1">
+<h1>My First R Markdown Document!</h1>
+<div id="more-hashtags-smaller-header" class="section level2">
+<h2>More hashtags = smaller header</h2>
+<p>Here is some text and a list:</p>
 <ul>
-<li>Gain an appreciation for the “Flipped Classroom” teaching model</li>
-<li>Install R, RStudio, and Swirl on your computer</li>
-<li>Become familiar with the following aspects of R:
-<ul>
-<li>The interactive console</li>
-<li>Getting help</li>
-<li>Arithmetic</li>
-<li>Variables</li>
-<li>Vectors</li>
-<li>Function calls</li>
-<li>The working directory and files</li>
-<li>Creating sequences of consecutive and repeated numbers</li>
-</ul></li>
+<li>It’s <em>easy</em> to style text for <strong>emphasis</strong>.</li>
+<li>It’s also easy to add a <a href="http://www.massgeneral.org">link</a>.</li>
 </ul>
+<pre class="r"><code>x &lt;- rnorm(100)
+summary(x)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -2.21816 -0.53615  0.02636  0.08330  0.67071  3.01052</code></pre>
+<p>The first random number in <code>x</code> is -0.4073074.</p>
 </div>
-<div id="pre-session-activities" class="section level3">
-<h3>Pre-Session Activities</h3>
-<p>Please read the following:</p>
-<ul>
-<li><strong>[6 min]</strong> Saying Goodbye to Lectures in Medical School — Paradigm Shift or Passing Fad? <a href="http://www.nejm.org/doi/full/10.1056/NEJMp1706474" class="uri">http://www.nejm.org/doi/full/10.1056/NEJMp1706474</a></li>
-</ul>
-<p>Please view the following:</p>
-<ul>
-<li><strong>[6 min]</strong> Blended Learning &amp; Flipped Classroom (Osmosis.org): <a href="https://www.youtube.com/watch?v=paQCE58334M" class="uri">https://www.youtube.com/watch?v=paQCE58334M</a></li>
-<li><strong>[5 min]</strong> Scripting Your Analysis (Roger Peng, JHU Biostatistics): <a href="https://www.youtube.com/watch?v=olNgpYeTALk" class="uri">https://www.youtube.com/watch?v=olNgpYeTALk</a></li>
-</ul>
-<p>Please install R, RStudio, and Swirl on your personal computer:</p>
-<ul>
-<li>R: <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></li>
-<li>RStudio (the free Desktop version): <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
-<li>Swirl: To install swirl and the “R Programming” course that will be covered in the first few sessions, type the following into the interactive R console:</li>
-</ul>
-<pre class="r"><code>install.packages(“swirl”)
-library(swirl)
-install_course_github(&quot;swirldev&quot;, &quot;R_Programming_E&quot;)
-swirl()</code></pre>
-<p>Please complete the following swirl modules.</p>
-<ul>
-<li>R Programming: Basic Building Blocks</li>
-<li>R Programming: Workspace and Files</li>
-<li>R Programming: Sequences of Numbers</li>
-</ul>
-<p>At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: <a href="mailto:skadauke@mgh.harvard.edu">skadauke@gmail.com</a>.</p>
+<div id="including-plots" class="section level2">
+<h2>Including plots</h2>
+<p>The <code>echo = FALSE</code> option hides R code.</p>
+<p><img src="00_myfirstrmarkdowndoc_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 </div>
 
