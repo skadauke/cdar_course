@@ -7,4 +7,4 @@ navbar:
       href: 00_intro.html
     - text: "Session 1"
       href: 01_basics.html
-output_dir: "."
+output_dir: "docs"
