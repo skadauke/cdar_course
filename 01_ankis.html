@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head> 
+  <title>Session 1</title> 
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" 
+   href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
+   charset="utf-8" type="text/javascript"></script> 
+</head>
+<body>
+
+<style type="text/css">
+.card {
+  font-family: Arial;
+  font-size: 20px;
+  line-height: 1.3em;
+  margin: 30px 2px 10px 2px;
+  text-align: center;
+  color: black;
+  background-color: white;
+}
+
+code, pre, .c {
+  font-family: monospace;
+  padding: 0.2em 0em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  /* Overwrite ugly slidy CSS code */
+  font-weight: normal;
+  line-height: 1.3em;
+  border-style: none;
+  color: black;
+}
+
+.extra {
+  border: 2px solid #a1a1a1;
+  padding: 10px 40px;
+  background: #f3f4f8;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #cccccc;
+  font-size: 80%;
+}
+
+img[src*="latex"] {
+    vertical-align: middle;
+}
+
+.cloze {
+ font-weight: bold;
+ color: blue;
+}
+
+.highlight {
+    background: #ffffff; 
+    font-size: 85%;
+}
+
+@media print {
+  @page {
+    /* Hide page header and footer */
+    margin: 0;
+    size: 3in 5in landscape;
+  }
+  
+  /* Do not show answers on print-outs */
+  div.incremental {
+    display: none;
+  }
+}
+</style>
+
+<div class="slide cover">
+  <br><br>
+  <h1>Session 1 - Basics</h1>
+</div>
+
+
+<div class="slide">
+  <div class="card">R: assign the result of <code class="myCodeClass">5 + 7</code> to the variable <code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #666666">5</span> <span style="color: #666666">+</span> <span style="color: #666666">7</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">In R, the&nbsp;<b>assignment operator</b>&nbsp;is a smaller-than sign followed by a dash: <code class="c">&lt;-</code>.&nbsp;</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: define <b>vector</b>.</div>
+  <div class="incremental">
+    <div class="card"><hr>A <b>sequence of data elements</b> of the same <b>data type</b>    <br><br> <div class="extra">Vectors can be thought of as <b>contiguous cells containing data</b>.&nbsp;The most basic data type in R is a <b>numeric vector</b>. A single number such as <code class="myCodeClass">4.2</code> is still a vector, of length 1.<div><br /></div><div><img src="01_ankis_files/paste-23635205030306.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector containing the numbers <code class="myCodeClass">1.1</code>, <code class="myCodeClass">9</code>, and <code class="myCodeClass">3.14</code> and store it in a variable called <code class="myCodeClass">z</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center></center><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">z <span style="color: #666666">&lt;-</span> <span style="color: #B00040">c</span>(<span style="color: #666666">1.1</span>, <span style="color: #666666">9</span>, <span style="color: #666666">3.14</span>)</pre></div></td></tr></tbody></table></center>    <br><br> <div class="extra"><div>Create a vector using the <code class="myCodeClass">c()</code> function, which stands&nbsp;for <b>concatenate</b>&nbsp;or <b>combine</b>.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: open the built-in help page for the <code class="myCodeClass">c()</code> function</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">?</span><span style="color: #B00040">c</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>Anytime you have questions about a particular function, you can access R's&nbsp;built-in help files via the <code class="myCodeClass">`?`</code> command.</div><div><br /></div><div><img src="01_ankis_files/paste-26959509717793.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose the vector <code class="myCodeClass">z &lt;- c(1, 1, 1)</code>. What is the result of the expression <code class="myCodeClass">z * 100</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 100 100 100</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">In R, arithmetic operations (<code class="c">+</code>, <code class="c">-</code>, <code class="c">*</code>, <code class="c">/</code>, etc.) with vectors are performed <b>on each element&nbsp;of the vector</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have two vectors<div><br /><div><code class="myCodeClass">x &lt;- c(1, 1, 1, 1)</code>&nbsp;</div><div><code class="myCodeClass">y &lt;- c(2, 3)</code>.&nbsp;</div><div><br /></div><div>What is the result of the expression&nbsp;<code class="myCodeClass">x + y</code>?</div></div></div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 3 4 3 4</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>When given two vectors of the <b>same length</b>, R performs the specified&nbsp;arithmetic operation (<code class="myCodeClass">+</code>, <code class="myCodeClass">-</code>, <code class="myCodeClass">*</code>, etc.) element-by-element.&nbsp;</div><div><br /></div><div>If the vectors&nbsp;are of <b>different lengths</b>, R <b><font color="#ff0000">recycles</font></b>&nbsp;the shorter vector until it is the same&nbsp;length as the longer vector.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: are the two variable names <code class="myCodeClass">my_sqrt</code> and <code class="myCodeClass"> My_sqrt</code> equivalent?</div>
+  <div class="incremental">
+    <div class="card"><hr><b>No</b>    <br><br> <div class="extra">Variable names in R are <b>case sensitive</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: determine which directory your R session is currently using.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">getwd</span>() </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>In the example below, the working directory is the <b>file path</b>&nbsp;<code class="c">/Users/skadauke</code>.&nbsp;</div><div><br /></div><img src="01_ankis_files/paste-25009594564811.jpg" /></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: list all the objects (variables, functions, etc.) in your <b>workspace</b>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">ls</span>() </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The <b>workspace</b>&nbsp;is the place where all the objects are that are currently loaded in R's memory. This includes vectors, data frames, and other types of more complex objects.&nbsp;<div><br /></div><div>RStudio shows you the objects in the workspace, along with some information about each object in the <b>Environment</b>&nbsp;tab. In the example below, there are three objects in the workspace: the data frames&nbsp;<code class="c">cars</code>, <code class="c">karl</code>, and <code class="c">mtcars</code>.</div><div><br /></div><div><img src="01_ankis_files/paste-26628797236002.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: list the files in the current working directory.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">list.files</span>() </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">Use <code class="myCodeClass">list.files()</code> to list the files in the working directory.<div><br /></div><div>In the screenshot below, you can see that <code class="c">list.files()</code> returns a <b>character vector</b> with 13 elements. Each element is the name of a file or directory. An alternative to typing list.files() is to look at the <b>Files</b>&nbsp;tab.</div><div><br /></div><div>You might wonder, why does <code class="c">list.files()</code> not show the&nbsp;<code class="c">.RData</code> or <code class="c">.Rhistory</code>&nbsp;files that are shown in the Files tab? Because they are <i>hidden </i>files. All files on macOS (and Unix/Linux) that start with a dot <code class="c">.</code> are hidden. If you want <code class="c">list.files()</code> to tell you about hidden files, pass it the optional argument <code class="c">all.files = TRUE</code>.</div><div><br /></div><div><img src="01_ankis_files/paste-31095563223841.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: assign the&nbsp;value of the current working directory to a variable&nbsp;called <code class="myCodeClass">my_current_dir</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">my_current_dir <span style="color: #666666">&lt;-</span> <span style="color: #008000">getwd</span>() </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The return value of <code class="c">getwd()</code> is a character vector which can be stored in a variable.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: set the working directory to <code class="myCodeClass">my_dir</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">setwd</span>(<span style="color: #BA2121">"my_dir"</span>) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The function <code class="c">setwd()</code> changes the current directory to the directory given to it as an argument, in this case <code class="c">my_dir</code>.&nbsp;<div><b><br /></b></div><div><b>Note</b>:&nbsp;we are not specifying where in the file system R is supposed to look for <code class="c">my_dir</code>. That means, my_dir is a <b>relative path</b>.&nbsp;R will look for <code class="c">my_dir</code> in the current directory.</div><div><br /></div><div>You can also use <code class="c">setwd()</code> with an <b>absolute path</b>. That just means that we can tell <code class="c">setwd()</code> where <i>exactly</i>&nbsp;in the file system we want R to look for <code class="c">my_dir</code>. To set the current directory to <code class="c">/Users/skadauke/my_dir</code> you would write:</div><div><br /></div><div><center><table class="highlighttable"><tbody><tr><td><br /></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">setwd</span>(<span style="color: #BA2121">"/Users/skadauke/my_dir"</span>)</pre></div></td></tr></tbody></table></center><div><br /></div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector <code class="myCodeClass">x</code> containing the sequence of numbers from <code class="myCodeClass">1</code> through <code class="myCodeClass">20</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #666666">1:20</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">Use the colon&nbsp;<code class="myCodeClass">`:`</code> operator to create sequences of consecutive numbers.&nbsp;While it is possible to achieve the same result with&nbsp;<code class="myCodeClass">c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)</code>, this is cumbersome to write.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: pull up the built-in help for the colon (<code class="myCodeClass">:</code>)&nbsp;operator</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">?</span><span style="color: #BA2121">`:`</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>Remember that if you have questions about a particular R function, you&nbsp;can access its documentation with a question mark followed by the function name:&nbsp;<code class="myCodeClass">?function_name_here</code>.&nbsp;</div><div><br /></div><div>However, in the case of an <b>operator</b> like the colon used above,&nbsp;you must enclose the symbol in <b>backticks</b> like this: <code class="myCodeClass">?`:`</code>. Note: instead of backticks you can also use regular quotes like so: <code class="myCodeClass">?":"</code></div><div><code class="myCodeClass"><br /></code></div><div><code class="myCodeClass"><img src="01_ankis_files/paste-28260884808480.jpg" /></code></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector&nbsp;<code class="myCodeClass">x</code>&nbsp;containing the sequence of numbers from&nbsp;<code class="myCodeClass">1</code>&nbsp;through&nbsp;<code class="myCodeClass">20</code>&nbsp;in increments of <code class="myCodeClass">0.5</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #008000">seq</span>(<span style="color: #666666">1</span>, <span style="color: #666666">20</span>, by<span style="color: #666666">=0.5</span>) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>The <code class="c">`:`</code> operator is great for creating sequences of integer numbers. If the step size is anything other than 1, however, you need to use the&nbsp;<code class="myCodeClass">seq()</code> function. Use the <code class="c">by=</code> argument to specify the step size.&nbsp;</div><div><br /></div><div><b>Note</b>: to create a sequence of equally spaced numbers with a set number of elements, use the <code class="c">length=</code> argument instead of the <code class="c">by=</code> argument.</div><div><br /></div><div>In the screenshot below, note that the first and last elements of <code class="c">x</code> are 1 and 20, respectively, and the steps in between are 0.5, as expected. In addition, the <b>Environment</b> tab on the right shows x and tells you that it's a numeric vector with 39 elements (<code class="c">num [1:39]</code>) as well as its first couple of values.</div><div><br /></div><div><img src="01_ankis_files/paste-28943784608544.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: find the number of elements of the vector <code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">length</span>(x) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The&nbsp;<code class="myCodeClass">length()</code>&nbsp;function returns the number of elements of a vector.<div><br /></div><div><img src="01_ankis_files/paste-29738353557968.jpg" /></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector <code class="myCodeClass">s</code> containing the sequence of integers <code class="myCodeClass">1</code>, <code class="myCodeClass">2</code>, <code class="myCodeClass">3</code>, ..., <code class="myCodeClass">n</code> where <code class="myCodeClass">n</code> is the number of elements of another vector <code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">s <span style="color: #666666">&lt;-</span> <span style="color: #008000">seq_along</span>(x) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The <code class="myCodeClass">seq_along()</code> function creates an integer <i>sequence</i> of numbers <i>along</i>&nbsp;another vector. This is sometimes necessary for writing code that modifies each element of a vector because it allows you to keep track of element you are modifying.&nbsp;Another (less elegant) option to achieve the same result is <code class="myCodeClass">s &lt;- 1:length(x)</code>.&nbsp;</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector&nbsp;<code class="myCodeClass">x</code>&nbsp;that contains 40 zeroes.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #008000">rep</span>(<span style="color: #666666">0</span>, times<span style="color: #666666">=40</span>) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">Use the <code class="c">rep()</code> (<b>replicate</b>)<b>&nbsp;</b>function to create vectors with repeated numbers.&nbsp;<div><br /></div><div>In the screenshot below, note that all elements of&nbsp;<code class="c">x</code>&nbsp;are 0. The&nbsp;<b>Environment</b>&nbsp;tab on the right shows x and tells you that it's a numeric vector with 40 elements (<code class="c">num [1:40]</code>) as well as that its first couple of values are all 0.<br /><div><br /></div><div><img src="01_ankis_files/paste-33509334844191.jpg" /></div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector&nbsp;<code class="myCodeClass">x</code>&nbsp;that contains 40 zeroes followed by 40 ones and 40 twos.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #008000">rep</span>(<span style="color: #B00040">c</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, <span style="color: #666666">2</span>), each<span style="color: #666666">=40</span>) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div><code class="c">rep()</code> can also replicate vectors with multiple elements to create repeated sequences.&nbsp;</div><div><br /></div>If the <code class="myCodeClass">each=</code> argument is specified, each element of the supplied vector, in this case <code class="myCodeClass">c(0, 1, 2)</code>, is repeated the specified number of times.<div><br /></div><div>In the screenshot below you see that <code class="c">x</code> is a numeric vector with 120 elements, with the first 40 elements equal to 0, the second 40 elements equal to 1, and the final 40 elements equal to 2.<br /><div><br /></div><div><img src="01_ankis_files/paste-34711925687072.jpg" /></div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: create a vector&nbsp;<code class="myCodeClass">x</code>&nbsp;that contains 40 repeats of the pattern <code class="myCodeClass">0</code>, <code class="myCodeClass">1</code>, <code class="myCodeClass">2</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x <span style="color: #666666">&lt;-</span> <span style="color: #008000">rep</span>(<span style="color: #B00040">c</span>(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, <span style="color: #666666">2</span>), times<span style="color: #666666">=40</span>) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div><code class="c">rep()</code>&nbsp;can also replicate vectors with multiple elements to create repeated sequences.&nbsp;</div><div><br /></div>If the&nbsp;<code class="myCodeClass">times=</code>&nbsp;argument is specified, the entire vector is repeated the specified number of times.<div><br /></div><div>In the screenshot below you see that&nbsp;<code class="c">x</code>&nbsp;is a numeric vector with 120 elements, with the sequence 0, 1, 2 repeated 40 times.</div><div><br /></div><div><div><img src="01_ankis_files/paste-35261681500959.jpg" /></div></div></div></div>
+  </div>
+</div>
+
+</body>
+</html>
+
