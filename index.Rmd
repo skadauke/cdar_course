@@ -9,6 +9,11 @@ TODO
 - More links
 - Talk about the peculiarities of teaching doctors?
 - Create about.Rmd page? Or link to about.me? Should have a CV, picture, Github, and short bio
+- Fork swirl?
+  - Could remove swirl modules I don't want to cover
+  - Could modify swirl modules as I please
+  - Could have module completions be communicated via a simple RESTful API instead of email (alternative: gmailR?)
+  - Could create dplyr/ggplot2 modules without base graphics
 
 -->
 
@@ -23,12 +28,44 @@ Boston, MA
 
 <!-- Intro pgh: about reasons why clinicians generally don't script their analyses.
 
-- Learning a programming language is a large upfront investment in effort and time. Time is always at a premium since physicians are generally also responsible for providing clinical care to patients.
+- Learning a programming language is a large upfront investment in effort and time. Time is at a premium because of patient care obligations. Moreover, physicians don't see themselves are professional data analysts and therefore have little interest in exploring alternative methods to performing data analysis from what they already know. 
 
 - Physicians are skeptical of promises that information technology innovations will simplify things for them. This is probably due to negative experiences with electronic health record software.
 
-- Physicians tend to model other, more senior, physicians. Those role models do not use R.
+- Physicians tend to model other, more senior, physicians. They consult these role models as well as knowedge bases curated by experts who are also medical doctors.
 
+- Why not leave physicians out of the data analysis??
+
+- Physicians know details about the disease and are often also intimately involved in the data collection. 
+
+- Physicians will tend to insist on being a part of the analysis as they are the ones who came up with the scientific question and are therefore motivated in seeing the outcomes.
+
+- Does this mean that we need to train physicians to be biostatisticians and programmers?
+
+- Heck no! We merely want physicians to be comfortable with the technologies that allow reproducible data analyses and then, after having had a first go at the analysis, consult with more experienced personnel, such as biostatisticians, in a efficient fashion.
+
+- So what's the solution to these issues?
+
+- Teach reproducible data analysis in the most intuitive fashion possible.
+- Use real clinical data
+- Get to the "good parts" i.e. processing data frames and visualizing as soon as possible
+- Use modern teaching methods that maximize the effort / retention ratio.
+
+
+- Unique issue with clinical data: highly protected
+  - HIPAA standards
+    - Minimum necessary
+    - Need to know
+  - Necessitates de-identification of data which should be done early in the data analysis pipeline.
+  - It may be necessary to provide a record showing who accessed the data before de-identification
+  - Makes some commonly used tools in the data science community inappropriate (e.g. GitHub) for sharing primary data sets
+  - It is often necessary to explain exactly what data will be collected prior to the study (IRB)
+  - Electronic data capture (EDC) tools exist that integrate data collection, auditing, and de-identification
+    - The investigator designs "data instruments" that allow collection of data in a study-specific format
+    - Data is entered via an encrypted connection to the server via a Web interface and is then stored in a HIPAA-compliant fashion
+      - Access is logged for audits
+    - After data entry is finished, de-identified data sets can be exported for downstream analysis in a statistical software package such as R
+    - A widely used EDC tool is REDCap which was developed by Vanderbilt University and is free for non-commercial use
 -->
 
 The explosive growth in clinical data requires the judicious use of more sophisticated analysis tools than was necessary in the past. There is a current and ongoing discourse about the characteristics of best practices in data analysis. Chief among them are: 
@@ -58,11 +95,11 @@ The goal of the proposed course is to introduce clinicians to a reproducible and
 |---------|-----------|----------|----------------------------------------------|
 | 9/1/17  | 1 PM      | GRJ245   | [Introductory Lecture: Reproducibility and Literate Programming][1] |
 | 9/6/17  | 4 PM      | GRJ245   | [Session 1: Getting Started with R, RStudio, and swirl][2] |
-| 9/8/17  | 10 AM     | GRJ245   | Session 2                                    |
+| 9/8/17  | 10 AM     | GRJ245   | [Session 2: Vectors, Missing Values, and Anki][3] |
 | 9/11/17 | 2 PM      | GRJ245   | Session 3                                    |
 | 9/15/17 | 10 AM     | GRJ245   | Session 4                                    |
 
 [1]: 00_intro.html
 [2]: 01_basics.html
-[3]: 02_dataframes_anki.html
+[3]: 02_vectors_na_anki.html
 [4]: 03_rmarkdown_lookingatdata.html

@@ -1,0 +1,59 @@
+---
+output: html_document
+---
+
+<!-- 
+
+TO DO:
+- Create some Ankis to test knowledge about Anki as well as some examples of poorly formatted and well-formatted cards. 
+
+
+
+-->
+
+## Session 2
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| 9/8/17  | 10 AM     | GRJ245   |
+
+### Objectives
+
+*	Gain an appreciation for spaced repetition as a learning strategy
+*	Install Anki on your computer and import the Anki deck containing questions from the first session.
+*	Become familiar with the following aspects of R:
+    * Vectors
+    * Missing values (NA, NaN, Inf)
+    * Subsetting vectors
+
+Please view the following:
+
+* Spaced Repetition (osmosis.org): https://www.youtube.com/watch?v=cVf38y07cfk
+* Anki 2: Shared decks and review basics: https://www.youtube.com/watch?v=QS2G-k2hQyg&yt:cc=on
+
+Please read the following:
+
+*	Twenty Rules of Formulating Knowledge (don’t worry about the references to the different versions of SuperMemo, it’s a program similar to Anki): https://www.supermemo.com/en/articles/20rules
+
+Please install Anki on your desktop and/or laptop and load the first session’s deck.
+
+*	Anki 2: https://apps.ankiweb.net/
+*	Optional: Set up an Ankiweb account to sync your decks between devices and review cards on the web: https://ankiweb.net/ 
+
+Swirl modules:
+
+* R Programming: Vectors
+* R Programming: Missing Values
+* R Programming: Subsetting Vectors
+
+Optional but highly recommended:
+
+**Anki Essentials** by Alex Vermeer, a detailed and practical illustrated guide to Anki: https://foggymountainpass.com/anki-essentials/. This ebook used to be free but is now $5 to download. Here are some sample chapters: https://alexvermeer.com/wp-content/uploads/Anki-Essentials-Free-Chapters.pdf
+
+<!--
+### Materials
+
+* [Session 2 slides (Slidy)](02_ankis.html)
+* [Session 2 hand-out (no answers)](02_ankis_no_answers.pdf)
+* [Session 2 Anki cards (.apkg)](02_ankis.apkg)
+-->

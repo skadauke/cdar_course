@@ -2,6 +2,35 @@
 output: html_document
 ---
 
+<!-- 
+
+INSTRUCTIONS TO THE INSTRUCTOR:
+
+- The morning of the day before the session remind everyone who hasn't yet finished the assignments that it's important to do so.
+- Export a current version of the Anki cards
+  - Export as .apkg *with* scheduling information to preserve order (just make sure they are not in circulation)
+  - Name "01_ankis.apkg"
+- Create a current version of the Slidy deck and problem set
+- On the morning of the day of the session send a reminder about the course
+- At the beginning of the session unlock materials:
+  - for the the CURRENT lesson (see below) so participants can review them afterwards
+  - for the NEXT lesson, just the objectives and assignments
+- Structure of the session:
+  - Hand out problem set and let everyone figure out stuff by themselves (while I work on the site), and help each other.
+  - Go over the Slidy deck and review
+  - Explain that these slides were actually made from Anki cards
+  - Show a live Anki demo
+    - Create new user profile
+    - Import
+    
+  - Hand out assignments for the next session
+
+Unlocking lessons:
+- _site.yml: remove comments hiding link to the next lesson
+- index.Rmd: add link to next lesson
+
+-->
+
 ## Session 1: Getting Started with R, RStudio, and swirl
 
 | Date    | Time      | Location |
@@ -41,7 +70,7 @@ Please install R, RStudio, and Swirl on your personal computer:
 *	Swirl: To install swirl and the "R Programming" course that will be covered in the first few sessions, type the following into the interactive R console:
 
 ```{r, eval=FALSE}
-install.packages(“swirl”)
+install.packages("swirl")
 library(swirl)
 install_course_github("swirldev", "R_Programming_E")
 swirl()
@@ -55,3 +84,8 @@ Please complete the following swirl modules.
 
 At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: [skadauke@mgh.harvard.edu](mailto:skadauke@mgh.harvard.edu).
 
+### Materials
+
+* [Session 1 slides (Slidy)](01_ankis.html)
+* [Session 1 hand-out (no answers)](01_ankis_no_answers.pdf)
+* [Session 1 Anki cards (.apkg)](01_ankis.apkg)

@@ -205,34 +205,14 @@ $(document).ready(function () {
 
 <!-- 
 
-INSTRUCTIONS TO THE INSTRUCTOR:
+TO DO:
+- Create some Ankis to test knowledge about Anki as well as some examples of poorly formatted and well-formatted cards. 
 
-- The morning of the day before the session remind everyone who hasn't yet finished the assignments that it's important to do so.
-- Export a current version of the Anki cards
-  - Export as .apkg *with* scheduling information to preserve order (just make sure they are not in circulation)
-  - Name "01_ankis.apkg"
-- Create a current version of the Slidy deck and problem set
-- On the morning of the day of the session send a reminder about the course
-- At the beginning of the session unlock materials:
-  - for the the CURRENT lesson (see below) so participants can review them afterwards
-  - for the NEXT lesson, just the objectives and assignments
-- Structure of the session:
-  - Hand out problem set and let everyone figure out stuff by themselves (while I work on the site), and help each other.
-  - Go over the Slidy deck and review
-  - Explain that these slides were actually made from Anki cards
-  - Show a live Anki demo
-    - Create new user profile
-    - Import
-    
-  - Hand out assignments for the next session
 
-Unlocking lessons:
-- _site.yml: remove comments hiding link to the next lesson
-- index.Rmd: add link to next lesson
 
 -->
-<div id="session-1-getting-started-with-r-rstudio-and-swirl" class="section level2">
-<h2>Session 1: Getting Started with R, RStudio, and swirl</h2>
+<div id="session-2" class="section level2">
+<h2>Session 2</h2>
 <table>
 <thead>
 <tr class="header">
@@ -243,8 +223,8 @@ Unlocking lessons:
 </thead>
 <tbody>
 <tr class="odd">
-<td>9/6/17</td>
-<td>4 PM</td>
+<td>9/8/17</td>
+<td>10 AM</td>
 <td>GRJ245</td>
 </tr>
 </tbody>
@@ -252,57 +232,44 @@ Unlocking lessons:
 <div id="objectives" class="section level3">
 <h3>Objectives</h3>
 <ul>
-<li>Gain an appreciation for the “Flipped Classroom” teaching model</li>
-<li>Install R, RStudio, and Swirl on your computer</li>
+<li>Gain an appreciation for spaced repetition as a learning strategy</li>
+<li>Install Anki on your computer and import the Anki deck containing questions from the first session.</li>
 <li>Become familiar with the following aspects of R:
 <ul>
-<li>The interactive console</li>
-<li>Getting help</li>
-<li>Arithmetic</li>
-<li>Variables</li>
 <li>Vectors</li>
-<li>Function calls</li>
-<li>The working directory and files</li>
-<li>Creating sequences of consecutive and repeated numbers</li>
+<li>Missing values (NA, NaN, Inf)</li>
+<li>Subsetting vectors</li>
 </ul></li>
-</ul>
-</div>
-<div id="pre-session-activities" class="section level3">
-<h3>Pre-Session Activities</h3>
-<p>Please read the following:</p>
-<ul>
-<li><strong>[6 min]</strong> Saying Goodbye to Lectures in Medical School — Paradigm Shift or Passing Fad? <a href="http://www.nejm.org/doi/full/10.1056/NEJMp1706474" class="uri">http://www.nejm.org/doi/full/10.1056/NEJMp1706474</a></li>
 </ul>
 <p>Please view the following:</p>
 <ul>
-<li><strong>[6 min]</strong> Blended Learning &amp; Flipped Classroom (Osmosis.org): <a href="https://www.youtube.com/watch?v=paQCE58334M" class="uri">https://www.youtube.com/watch?v=paQCE58334M</a></li>
-<li><strong>[5 min]</strong> Scripting Your Analysis (Roger Peng, JHU Biostatistics): <a href="https://www.youtube.com/watch?v=olNgpYeTALk" class="uri">https://www.youtube.com/watch?v=olNgpYeTALk</a></li>
+<li>Spaced Repetition (osmosis.org): <a href="https://www.youtube.com/watch?v=cVf38y07cfk" class="uri">https://www.youtube.com/watch?v=cVf38y07cfk</a></li>
+<li>Anki 2: Shared decks and review basics: <a href="https://www.youtube.com/watch?v=QS2G-k2hQyg&amp;yt:cc=on" class="uri">https://www.youtube.com/watch?v=QS2G-k2hQyg&amp;yt:cc=on</a></li>
 </ul>
-<p>Please install R, RStudio, and Swirl on your personal computer:</p>
+<p>Please read the following:</p>
 <ul>
-<li>R: <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></li>
-<li>RStudio (the free Desktop version): <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
-<li>Swirl: To install swirl and the “R Programming” course that will be covered in the first few sessions, type the following into the interactive R console:</li>
+<li>Twenty Rules of Formulating Knowledge (don’t worry about the references to the different versions of SuperMemo, it’s a program similar to Anki): <a href="https://www.supermemo.com/en/articles/20rules" class="uri">https://www.supermemo.com/en/articles/20rules</a></li>
 </ul>
-<pre class="r"><code>install.packages(&quot;swirl&quot;)
-library(swirl)
-install_course_github(&quot;swirldev&quot;, &quot;R_Programming_E&quot;)
-swirl()</code></pre>
-<p>Please complete the following swirl modules.</p>
+<p>Please install Anki on your desktop and/or laptop and load the first session’s deck.</p>
 <ul>
-<li>R Programming: Basic Building Blocks</li>
-<li>R Programming: Workspace and Files</li>
-<li>R Programming: Sequences of Numbers</li>
+<li>Anki 2: <a href="https://apps.ankiweb.net/" class="uri">https://apps.ankiweb.net/</a></li>
+<li>Optional: Set up an Ankiweb account to sync your decks between devices and review cards on the web: <a href="https://ankiweb.net/" class="uri">https://ankiweb.net/</a></li>
 </ul>
-<p>At the end of each swirl lesson you will be asked whether someone should get an email to notify them that you’ve finished the course. Please affirm and enter: <a href="mailto:skadauke@mgh.harvard.edu">skadauke@mgh.harvard.edu</a>.</p>
-</div>
-<div id="materials" class="section level3">
-<h3>Materials</h3>
+<p>Swirl modules:</p>
 <ul>
-<li><a href="01_ankis.html">Session 1 slides (Slidy)</a></li>
-<li><a href="01_ankis_no_answers.pdf">Session 1 hand-out (no answers)</a></li>
-<li><a href="01_ankis.apkg">Session 1 Anki cards (.apkg)</a></li>
+<li>R Programming: Vectors</li>
+<li>R Programming: Missing Values</li>
+<li>R Programming: Subsetting Vectors</li>
 </ul>
+<p>Optional but highly recommended:</p>
+<p><strong>Anki Essentials</strong> by Alex Vermeer, a detailed and practical illustrated guide to Anki: <a href="https://foggymountainpass.com/anki-essentials/" class="uri">https://foggymountainpass.com/anki-essentials/</a>. This ebook used to be free but is now $5 to download. Here are some sample chapters: <a href="https://alexvermeer.com/wp-content/uploads/Anki-Essentials-Free-Chapters.pdf" class="uri">https://alexvermeer.com/wp-content/uploads/Anki-Essentials-Free-Chapters.pdf</a></p>
+<!--
+### Materials
+
+* [Session 2 slides (Slidy)](02_ankis.html)
+* [Session 2 hand-out (no answers)](02_ankis_no_answers.pdf)
+* [Session 2 Anki cards (.apkg)](02_ankis.apkg)
+-->
 </div>
 </div>
 
