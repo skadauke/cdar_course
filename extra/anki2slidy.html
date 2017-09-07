@@ -435,7 +435,7 @@ img[src*="latex"] {
 }
 </style>
 <p>Now let’s look at how we would render these three examples in <a href="https://www.w3.org/Talks/Tools/Slidy2/#(1)">HTML Slidy</a>. Note: we’re <em>not</em> using <a href="http://rmarkdown.rstudio.com/slidy_presentation_format.html">R Markdown Slidy</a> as the fields on the Anki cards are already in HTML which would create problems.</p>
-<p>To create a Slidy presentation is simple. The HTML document needs to start with a <a href="https://www.w3.org/Talks/Tools/Slidy2/#(3)">head</a> that includes links to the <code>slidy.css</code> stylesheet and <code>slidy.js</code> JavaScript code.</p>
+<p>To create a Slidy presentation is simple. The HTML document needs to start with a <a href="https://www.w3.org/Talks/Tools/Slidy2/#(3)">head</a> that includes links to the <code>slidy.css</code> stylesheet and <code>slidy.js</code> JavaScript code. <strong>Note</strong>: the head on the referred page links to <code>slidy.js</code> and <code>slidy.css</code> over HTTP, not HTTPS. some web services, including GitHub Pages, will not allow loading of linked documents an insecure (HTTP) connection.</p>
 <p>Each slide is enclosed in <code>&lt;div class=&quot;slide&quot;&gt; ... &lt;/div&gt;</code>.</p>
 <p>To <a href="https://www.w3.org/Talks/Tools/Slidy2/#(9)">animate slides</a>, Slidy provides a special <code>incremental</code> class which will cause elements to be hidden until a keystroke or mouse click occurs.</p>
 <p>Here is what the three examples would look like, rendered in Slidy HTML:</p>
@@ -797,21 +797,30 @@ hist(mtcars<span style="color: #666666">$</span>mpg)
 <li>Specify <code>img_dir</code> to locate Anki images:</li>
 </ol>
 <p>Note: you will want to change this if you want to make this script work on your system.</p>
-<pre class="r"><code>img_dir = &quot;/Users/skadauke/Library/Application Support/Anki2/User 1/collection.media/&quot;</code></pre>
+<pre class="r"><code>img_dir = &quot;/Users/skadauke/Library/Application Support/Anki2/User 1/collection.media&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Specify <code>source_file</code>, the exported Anki deck, and <code>output_file</code>, the slidify Rmd file.</li>
+<li>Specify <code>source_file</code>, the exported Anki deck, and <code>output_file</code>, the slidy html file. I’ll be putting the output file directly into the <code>docs.</code> folder so it can be served on GitHub Pages.</li>
 </ol>
 <p>Note: the below specifies a default test file so you might want to change to change it. You could use <code>file.choose()</code> to pick a file interactively but that would break <code>knitr</code>. If I have time, I will convert this document into an <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">interactive Shiny document</a>.</p>
-<pre class="r"><code>source_file &lt;- &quot;../01_ankis.txt&quot;
-output_file_root &lt;- &quot;../01_ankis&quot;
+<pre class="r"><code># can't use setwd() here since knitr will reset it to the document's directory
+source_dir &lt;- &quot;/Users/skadauke/code/cdar_course&quot;
+dest_dir &lt;- &quot;/Users/skadauke/code/cdar_course/docs&quot;
 
-output_file &lt;- paste0(output_file_root, &quot;.html&quot;)
-asset_dir &lt;- paste0(output_file_root, &quot;_files&quot;)</code></pre>
+source_file &lt;- &quot;01_ankis.txt&quot;
+source_file_abs &lt;- file.path(source_dir, source_file)
+
+dest_root &lt;- &quot;01_ankis&quot;
+
+dest_file &lt;- paste0(dest_root, &quot;.html&quot;)
+dest_file_abs &lt;- file.path(dest_dir, dest_file)
+
+asset_dir &lt;- paste0(dest_root, &quot;_files&quot;)
+asset_dir_abs &lt;- file.path(dest_dir, asset_dir)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Load <code>source_file</code> into a data frame <code>deck</code> with column names <code>front</code> and <code>back</code>.</li>
+<li>Load <code>source_file_abs</code> into a data frame <code>deck</code> with column names <code>front</code> and <code>back</code>.</li>
 </ol>
 <pre class="r"><code>library(tidyverse)
-deck &lt;- read_tsv(source_file, col_names = c(&quot;front&quot;, &quot;back&quot;))</code></pre>
+deck &lt;- read_tsv(source_file_abs, col_names = c(&quot;front&quot;, &quot;back&quot;))</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Create strings for the <a href="https://www.w3.org/Talks/Tools/Slidy2/#(3)">Slidy header</a> and CSS portions of <code>output_file</code>. Note that the CSS is slightly different from above, which was necessary to override some of CSS specified inside <code>slidy.css</code>.</li>
 </ol>
@@ -822,8 +831,8 @@ deck &lt;- read_tsv(source_file, col_names = c(&quot;front&quot;, &quot;back&quo
 &lt;head&gt; 
   &lt;title&gt;Session 1&lt;/title&gt; 
   &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen, projection, print&quot; 
-   href=&quot;http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css&quot; /&gt; 
-  &lt;script src=&quot;http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js&quot; 
+   href=&quot;https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css&quot; /&gt; 
+  &lt;script src=&quot;https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js&quot; 
    charset=&quot;utf-8&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 
 &lt;/head&gt;
 &lt;body&gt;
@@ -867,6 +876,12 @@ code, pre, .c {
   font-size: 80%;
 }
 
+/* Resize large pictures to fit inside div */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 img[src*=&quot;latex&quot;] {
     vertical-align: middle;
 }
@@ -900,7 +915,7 @@ img[src*=&quot;latex&quot;] {
 </ol>
 <pre class="r"><code>title &lt;- '&lt;div class=&quot;slide cover&quot;&gt;
   &lt;br&gt;&lt;br&gt;
-  &lt;h1&gt;Session 1&lt;/h1&gt;
+  &lt;h1&gt;Session 1 - Basics&lt;/h1&gt;
 &lt;/div&gt;
 '</code></pre>
 <ol start="6" style="list-style-type: decimal">
@@ -921,27 +936,27 @@ for (i in 1:nrow(deck)) {
 <ol start="7" style="list-style-type: decimal">
 <li>Copy images to an asset folder. Clean it up if it exists already.</li>
 </ol>
-<pre class="r"><code>if (file.exists(asset_dir)) {
-  file.remove(dir(asset_dir, pattern = &quot;*&quot;, full.names = TRUE))
+<pre class="r"><code>if (file.exists(asset_dir_abs)) {
+  file.remove(dir(asset_dir_abs, pattern = &quot;*&quot;, full.names = TRUE))
 } else {
-  dir.create(asset_dir)
-}
-
-library(stringr)
+  dir.create(asset_dir_abs)
+}</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre class="r"><code>library(stringr)
 
 images &lt;- str_match_all(slides, '&lt;img src=&quot;(.*?)&quot;')[[1]][,2]
 
-do.call(file.copy, args=list(paste0(img_dir, '/', images), paste0(asset_dir, '/')))
+do.call(file.copy, args=list(file.path(img_dir, images), asset_dir_abs))</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre class="r"><code>slides &lt;- str_replace_all(slides, '&lt;img src=&quot;', paste0('&lt;img src=&quot;', asset_dir, '/'))
 
-slides &lt;- str_replace_all(slides, '&lt;img src=&quot;', paste0('&lt;img src=&quot;', asset_dir, '/'))
-
-if (length(list.files(asset_dir, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {
-  unlink(asset_dir, recursive = TRUE)
+if (length(list.files(asset_dir_abs, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {
+  unlink(asset_dir_abs, recursive = TRUE)
 }</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Write <code>output_file</code>:</li>
 </ol>
-<pre class="r"><code>file_con &lt;- file(output_file)
+<pre class="r"><code>file_con &lt;- file(dest_file_abs)
 writeLines(c(slidy_header, css, title, slides, slidy_footer), file_con)
 close(file_con)</code></pre>
 </div>

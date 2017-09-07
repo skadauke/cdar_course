@@ -7,6 +7,8 @@ output: html_document
 rm(list=ls()) ### To clear namespace
 library(knitr)
 # knitrengines to render HTML more nicely
+# To install:
+# devtools::install_github("hrbrmstr/knitrengines")
 library(knitrengines)
 opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
                echo=TRUE, warning=FALSE, message=FALSE)
@@ -107,7 +109,7 @@ img[src*="latex"] {
 
 Now let's look at how we would render these three examples in [HTML Slidy](https://www.w3.org/Talks/Tools/Slidy2/#(1)). Note: we're *not* using [R Markdown Slidy](http://rmarkdown.rstudio.com/slidy_presentation_format.html) as the fields on the Anki cards are already in HTML which would create problems.
 
-To create a Slidy presentation is simple. The HTML document needs to start with a [head](https://www.w3.org/Talks/Tools/Slidy2/#(3)) that includes links to the `slidy.css` stylesheet and `slidy.js` JavaScript code.
+To create a Slidy presentation is simple. The HTML document needs to start with a [head](https://www.w3.org/Talks/Tools/Slidy2/#(3)) that includes links to the `slidy.css` stylesheet and `slidy.js` JavaScript code. **Note**: the head on the referred page links to `slidy.js` and `slidy.css` over HTTP, not HTTPS. some web services, including GitHub Pages, will not allow loading of linked documents an insecure (HTTP) connection. 
 
 Each slide is enclosed in `<div class="slide"> ... </div>`.
 
@@ -292,26 +294,35 @@ Based on the above, here is what needs to be done to generate a Slidy document f
 Note: you will want to change this if you want to make this script work on your system.
 
 ```{r}
-img_dir = "/Users/skadauke/Library/Application Support/Anki2/User 1/collection.media/"
+img_dir = "/Users/skadauke/Library/Application Support/Anki2/User 1/collection.media"
 ```
 
-2. Specify `source_file`, the exported Anki deck, and `output_file`, the slidify Rmd file. 
+2. Specify `source_file`, the exported Anki deck, and `output_file`, the slidy html file. I'll be putting the output file directly into the `docs.` folder so it can be served on GitHub Pages.
 
 Note: the below specifies a default test file so you might want to change to change it. You could use `file.choose()` to pick a file interactively but that would break `knitr`. If I have time, I will convert this document into an [interactive Shiny document](http://rmarkdown.rstudio.com/authoring_shiny.html).
 
 ```{r}
-source_file <- "../01_ankis.txt"
-output_file_root <- "../01_ankis"
+# can't use setwd() here since knitr will reset it to the document's directory
+source_dir <- "/Users/skadauke/code/cdar_course"
+dest_dir <- "/Users/skadauke/code/cdar_course/docs"
 
-output_file <- paste0(output_file_root, ".html")
-asset_dir <- paste0(output_file_root, "_files")
+source_file <- "01_ankis.txt"
+source_file_abs <- file.path(source_dir, source_file)
+
+dest_root <- "01_ankis"
+
+dest_file <- paste0(dest_root, ".html")
+dest_file_abs <- file.path(dest_dir, dest_file)
+
+asset_dir <- paste0(dest_root, "_files")
+asset_dir_abs <- file.path(dest_dir, asset_dir)
 ```
 
-3. Load `source_file` into a data frame `deck` with column names `front` and `back`. 
+3. Load `source_file_abs` into a data frame `deck` with column names `front` and `back`. 
 
 ```{r}
 library(tidyverse)
-deck <- read_tsv(source_file, col_names = c("front", "back"))
+deck <- read_tsv(source_file_abs, col_names = c("front", "back"))
 ```
 
 4. Create strings for the [Slidy header](https://www.w3.org/Talks/Tools/Slidy2/#(3)) and CSS portions of `output_file`. Note that the CSS is slightly different from above, which was necessary to override some of CSS specified inside `slidy.css`.
@@ -324,8 +335,8 @@ slidy_header <- '<?xml version="1.0" encoding="utf-8"?>
 <head> 
   <title>Session 1</title> 
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
-   href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
-  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
+   href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
    charset="utf-8" type="text/javascript"></script> 
 </head>
 <body>
@@ -369,6 +380,12 @@ code, pre, .c {
   font-size: 80%;
 }
 
+/* Resize large pictures to fit inside div */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 img[src*="latex"] {
     vertical-align: middle;
 }
@@ -403,7 +420,7 @@ img[src*="latex"] {
 ```{r}
 title <- '<div class="slide cover">
   <br><br>
-  <h1>Session 1</h1>
+  <h1>Session 1 - Basics</h1>
 </div>
 '
 ```
@@ -428,23 +445,23 @@ for (i in 1:nrow(deck)) {
 
 7. Copy images to an asset folder. Clean it up if it exists already.
 
-```{r, results=FALSE}
-if (file.exists(asset_dir)) {
-  file.remove(dir(asset_dir, pattern = "*", full.names = TRUE))
+```{r}
+if (file.exists(asset_dir_abs)) {
+  file.remove(dir(asset_dir_abs, pattern = "*", full.names = TRUE))
 } else {
-  dir.create(asset_dir)
+  dir.create(asset_dir_abs)
 }
 
 library(stringr)
 
 images <- str_match_all(slides, '<img src="(.*?)"')[[1]][,2]
 
-do.call(file.copy, args=list(paste0(img_dir, '/', images), paste0(asset_dir, '/')))
+do.call(file.copy, args=list(file.path(img_dir, images), asset_dir_abs))
 
 slides <- str_replace_all(slides, '<img src="', paste0('<img src="', asset_dir, '/'))
 
-if (length(list.files(asset_dir, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {
-  unlink(asset_dir, recursive = TRUE)
+if (length(list.files(asset_dir_abs, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {
+  unlink(asset_dir_abs, recursive = TRUE)
 }
 
 ```
@@ -452,7 +469,7 @@ if (length(list.files(asset_dir, all.files = TRUE, include.dirs = TRUE, no.. = T
 8. Write `output_file`:
 
 ```{r}
-file_con <- file(output_file)
+file_con <- file(dest_file_abs)
 writeLines(c(slidy_header, css, title, slides, slidy_footer), file_con)
 close(file_con)
 ```
