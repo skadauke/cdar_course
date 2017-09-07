@@ -55,19 +55,18 @@ Unlocking lessons:
 
 Please read the following:
 
-*	**[6 min]** Saying Goodbye to Lectures in Medical School — Paradigm Shift or Passing Fad? <http://www.nejm.org/doi/full/10.1056/NEJMp1706474>
+*	**[6 min]** [Saying Goodbye to Lectures in Medical School — Paradigm Shift or Passing Fad?](http://www.nejm.org/doi/full/10.1056/NEJMp1706474) *N Engl J Med* 2017; 377:605-607
 
 Please view the following:
 
-*	**[6 min]** Blended Learning & Flipped Classroom (Osmosis.org):  <https://www.youtube.com/watch?v=paQCE58334M>
-*	**[5 min]** Scripting Your Analysis (Roger Peng, JHU Biostatistics): 
-<https://www.youtube.com/watch?v=olNgpYeTALk>
+*	**[6 min]** [Blended Learning & Flipped Classroom](https://www.youtube.com/watch?v=paQCE58334M) (Osmosis.org)
+*	**[5 min]** [Scripting Your Analysis](https://www.youtube.com/watch?v=olNgpYeTALk) (Roger Peng, JHU Biostatistics)
 
 Please install R, RStudio, and Swirl on your personal computer:
 
-*	R: <https://cloud.r-project.org/>
-*	RStudio (the free Desktop version): <https://www.rstudio.com/products/rstudio/download/>
-*	Swirl: To install swirl and the "R Programming" course that will be covered in the first few sessions, type the following into the interactive R console:
+*	[R download page](https://cloud.r-project.org/)
+*	[RStudio download page](https://www.rstudio.com/products/rstudio/download/) (the free Desktop version)
+*	[Swirl](http://www.swirlstats.com): To install swirl and the "R Programming" course that will be covered in the first few sessions, type the following into the interactive R console:
 
 ```{r, eval=FALSE}
 install.packages("swirl")
