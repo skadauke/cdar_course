@@ -20,8 +20,8 @@ TODO
 ## Reproducible Clinical Data Analysis with R
 
 [Stephan Kadauke, MD, PhD](skadauke@mgh.harvard.edu)   
-Massachusetts General Hospital
-Harvard Medical School
+Massachusetts General Hospital  
+Harvard Medical School  
 Boston, MA
 
 ### Course Description
