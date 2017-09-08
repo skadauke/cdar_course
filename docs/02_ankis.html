@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head> 
+  <title>Session 2</title> 
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" 
+   href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
+   charset="utf-8" type="text/javascript"></script> 
+</head>
+<body>
+
+<style type="text/css">
+.card {
+  font-family: Arial;
+  font-size: 20px;
+  line-height: 1.3em;
+  margin: 30px 2px 10px 2px;
+  text-align: center;
+  color: black;
+  background-color: white;
+}
+
+code, pre, .c {
+  font-family: monospace;
+  padding: 0.2em 0em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  /* Overwrite ugly slidy CSS code */
+  font-weight: normal;
+  line-height: 1.3em;
+  border-style: none;
+  color: black;
+}
+
+.extra {
+  border: 2px solid #a1a1a1;
+  padding: 10px 40px;
+  background: #f3f4f8;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #cccccc;
+  font-size: 80%;
+}
+
+/* Resize large pictures to fit inside div */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[src*="latex"] {
+    vertical-align: middle;
+}
+
+.cloze {
+ font-weight: bold;
+ color: blue;
+}
+
+.highlight {
+    background: #ffffff; 
+    font-size: 85%;
+}
+
+@media print {
+  @page {
+    /* Hide page header and footer */
+    margin: 0;
+    size: 3in 5in landscape;
+  }
+  
+  /* Do not show answers on print-outs */
+  div.incremental {
+    display: none;
+  }
+}
+</style>
+
+<div class="slide cover">
+  <br><br>
+  <h1>Session 2 - Vectors and Missing Values</h1>
+</div>
+
+
+<div class="slide">
+  <div class="card">The simplest data structure in R is the <span class=cloze>[...]</span>.</div>
+  <div class="incremental">
+    <div class="card"><hr>The simplest data structure in R is the <span class=cloze>vector</span>.</div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: <b>logical</b>&nbsp;vectors can contain the values <code class="myCodeClass"><span class=cloze>[...]</span></code>, <code class="myCodeClass"><span class=cloze>[...]</span></code>, and <code class="myCodeClass"><span class=cloze>[...]</span></code></div>
+  <div class="incremental">
+    <div class="card"><hr>R: <b>logical</b>&nbsp;vectors can contain the values <code class="myCodeClass"><span class=cloze>TRUE</span></code>, <code class="myCodeClass"><span class=cloze>FALSE</span></code>, and <code class="myCodeClass"><span class=cloze>NA</span></code>  <br><br> <div class="extra"><code class="myCodeClass">NA</code> is R's way to denote a <b>missing value</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a numeric vector&nbsp;<div><code class="myCodeClass"><br /></code></div><div><code class="myCodeClass">num_vect&nbsp;&lt;- c(0.5, 55, -10, 6)</code>.&nbsp;</div><div><br /></div><div>What is the result of the expression <code class="myCodeClass">num_vect &lt; 1</code>?</div></div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] </span><font color="#008000">TRUE</font><span style="color: #888888"> </span><font color="#ff0000">FALSE</font><span style="color: #888888"> </span><font color="#008000">TRUE</font><span style="color: #888888"> </span><font color="#ff0000">FALSE</font> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div>If this result is unexpected, note that <code class="myCodeClass">num_vect &lt; 1</code> is a <b>condition </b>and R will look at each element of <code class="myCodeClass">num_vect</code> to determine whether the condition is true or not.&nbsp;</div><div><br /></div><div>The first element of <code class="myCodeClass">num_vect</code> is <code class="myCodeClass">0.5</code>, which is less than 1 and therefore&nbsp;the statement <code class="myCodeClass">0.5 &lt; 1</code> is <code class="myCodeClass">TRUE</code>. The second element of <code class="myCodeClass">num_vect</code> is <code class="myCodeClass">55</code>, which is&nbsp;greater than 1, so the statement <code class="myCodeClass">55 &lt; 1</code> is <code class="myCodeClass">FALSE</code>. The same logic applies for the&nbsp;third and fourth elements.</div><div><br /></div>Logical operators (e.g., <code class="myCodeClass">&lt;</code>, <code class="myCodeClass">&gt;</code>, <code class="myCodeClass">==</code>, <code class="myCodeClass">!=</code>, etc.) evaluate each element of a vector at a time and return a <b>logical vector</b>&nbsp;that contains the result (<code class="myCodeClass">TRUE</code> or <code class="myCodeClass">FALSE</code>) for each element.&nbsp;<div><br /></div><div>Note that this is similar to how R performs arithmetic operations. This is a very general concept in R referred to as <b>vectorized operation</b>.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: what is the result of the expression&nbsp;<div><code class="myCodeClass"><br /></code></div><div><code class="myCodeClass">(3 &gt; 5) &amp; (4 == 4)</code></div><div><br /></div><div>?</div></div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">FALSE</code>    <br><br> <div class="extra"><div>Break this problem down into 2 pieces. The <code class="myCodeClass">`&amp;`</code>&nbsp;(logical <b>AND</b>) in the middle states that <b>both</b>&nbsp;pieces must be&nbsp;<code class="myCodeClass">TRUE</code>&nbsp;for the entire expression to be <code class="myCodeClass">TRUE</code>.&nbsp;</div><div><br /></div><div>Since <code class="myCodeClass">3 &gt; 5</code> is <code class="myCodeClass">FALSE</code> that's not the case.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: what is the result of the expression&nbsp;<div><code class="myCodeClass"><br /></code></div><div><code class="myCodeClass">(TRUE == TRUE) | (TRUE == FALSE)</code></div><div><br /></div><div>?</div></div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">TRUE</code>    <br><br> <div class="extra"><div>Break this problem down into 2 pieces. The <code class="myCodeClass">`|`</code> (logical <b>OR</b>) in the middle requires that <b>at least one</b>&nbsp;of the pieces must&nbsp;<code class="myCodeClass">TRUE</code>&nbsp;for the entire statement to be <code class="myCodeClass">TRUE</code>.&nbsp;</div><div><br /></div><div>Since the expression <code class="myCodeClass">TRUE == TRUE</code> is <code class="myCodeClass">TRUE</code>, that is indeed the case.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: what is the result of the expression&nbsp;<div><code class="myCodeClass"><br /></code></div><div><code class="myCodeClass">TRUE &amp; !TRUE</code></div><div><br /></div><div>?</div></div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">FALSE</code>    <br><br> <div class="extra">The <code class="myCodeClass">`!`</code> (logical <b>NOT</b>) negates the expression that follows it. Thus, the expression in question simplifies to <code class="myCodeClass">TRUE &amp; FALSE</code> which is <code class="myCodeClass">FALSE</code>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose <code class="myCodeClass">my_char &lt;- c("Massachusetts", "General", "Hospital")</code>. What is the result of&nbsp;<code class="myCodeClass">length(my_char)</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr>3    <br><br> <div class="extra"><code class="myCodeClass">length(my_char)</code> returns the <b>number of elements</b> of the vector <code class="myCodeClass">my_char</code>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: which symbol is used to denote a missing value?</div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">NA</code></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose <code class="myCodeClass">x &lt;- c(44, NA, 5, NA)</code>. What is the result of the expression <code class="myCodeClass">x - 1</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 43 NA 4 NA</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">Any operation involving <code class="myCodeClass">NA</code> generally yields <code class="myCodeClass">NA</code> as the result.&nbsp;Notice that the elements of the resulting vector that correspond with the <code class="myCodeClass">NA</code> values in <code class="myCodeClass">x</code> are also <code class="myCodeClass">NA</code>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose&nbsp;<code class="myCodeClass">x &lt;- c(44, NA, 5, NA)</code>. What is the result of the expression <code class="myCodeClass">is.na(x)</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr><center style="text-align: -webkit-auto;"><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">[<span style="color: #666666">1</span>] <span style="font-weight: bold; "><font color="#ff0000">FALSE</font></span> <span style="color: #008000; font-weight: bold">TRUE</span> <span style="font-weight: bold; "><font color="#ff0000">FALSE</font></span> <span style="color: #008000; font-weight: bold">TRUE</span> </pre></div> </td></tr></tbody></table></center></center>    <br><br> <div class="extra"><code class="myCodeClass">is.na(x)</code> tests the elements of a vector <code class="myCodeClass">x</code> for missingness.&nbsp;Everywhere you see a <code class="myCodeClass">TRUE</code>, you know the corresponding element of <code class="myCodeClass">x</code> is <code class="myCodeClass">NA</code>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: find the sum of the elements of the numeric vector <code class="myCodeClass">x &lt;- c(1, 2, 3)</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">sum</span>(x)</pre></div></td></tr></tbody></table></center>    <br><br> <div class="extra"><div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 6</span></pre></div></td></tr></tbody></table></center></div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: find the average of the elements of the numeric vector&nbsp;<code class="myCodeClass">x &lt;- c(1, 2, 3)</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">mean</span>(x) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra"><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 2</span></pre></div></td></tr></tbody></table></center></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector <code class="myCodeClass">z</code> that contains some missing values.&nbsp;Find the total number of missing values in <code class="myCodeClass">z</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center></center><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">sum</span>(<span style="color: #008000">is.na</span>(z)) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">This is a commonly used idiom in R so let's break it down.&nbsp;<div><br /></div><div>The first thing that happens is that the <code class="myCodeClass">is.na()</code> function creates a <b>logical vector</b> of the same length as <code class="myCodeClass">z</code> that contains the element <code class="myCodeClass">TRUE</code> wherever the corresponding element of <code class="myCodeClass">z</code> is <code class="myCodeClass">NA</code> and <code class="myCodeClass">FALSE</code>&nbsp;wherever it's something else.&nbsp;</div><div><br /></div><div>The <code class="myCodeClass">sum()</code> function then treats <code class="myCodeClass">TRUE</code> as the number <code class="myCodeClass">1</code> and <code class="myCodeClass">FALSE</code> as the number <code class="myCodeClass">0</code>. Therefore, if we take the sum of a bunch of <code class="myCodeClass">TRUE</code>s and <code class="myCodeClass">FALSE</code>s, we get the total number of <code class="myCodeClass">TRUE</code>s.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector z that contains some missing values. Find the proportion of elements in&nbsp;<code class="myCodeClass">z</code>&nbsp;that are missing (<code class="myCodeClass">NA</code>).</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">mean</span>(<span style="color: #008000">is.na</span>(z)) </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">R represents <code class="myCodeClass">TRUE</code> as the number <code class="myCodeClass">1</code> and <code class="myCodeClass">FALSE</code> as the number <code class="myCodeClass">0</code>. Therefore, if we take the mean of a bunch of <code class="myCodeClass">TRUE</code>s and <code class="myCodeClass">FALSE</code>s, we get the proportion of <code class="myCodeClass">TRUE</code>s.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: what is the result of the expression <code class="myCodeClass">0 / 0</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">NaN</code>    <br><br> <div class="extra"><code class="myCodeClass">NaN</code> stands for <b>not a number</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: what is the result of the expression&nbsp;<code class="myCodeClass">1 / 0</code>?</div>
+  <div class="incremental">
+    <div class="card"><hr><code class="myCodeClass">Inf</code>    <br><br> <div class="extra"><code class="myCodeClass">Inf</code> stands for <b>infinity</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector <code class="myCodeClass">x</code>. Retrieve the second element of <code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #666666">2</span>] </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The way you tell R that you want to select some particular elements (i.e. a&nbsp;<b>subset</b>) from a vector is by placing an&nbsp;<b>index vector</b>&nbsp;in&nbsp;<b>square brackets</b>&nbsp;immediately following the name of the vector.<div><br /></div><div>This is an example of a <b>numeric index</b>. The numeric index <b>selects elements by index number</b>.&nbsp;</div><div><br /></div><div>Note: <i>in contrast to other programming languages, such as Python or C, the first item has index 1 not 0!</i></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector&nbsp;<code class="myCodeClass">x</code>. Retrieve the first ten elements of&nbsp;<code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #666666">1:10</span>] </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">To select more than one element,<b>&nbsp;</b>you can supply a <b>numeric vector</b>&nbsp;as the <b>index</b>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector&nbsp;<code class="myCodeClass">x</code>&nbsp;given by:<div>&nbsp;<center><table><tbody><tr><td><div class="highlight" style="background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(248, 248, 248); background-position: initial initial; background-repeat: initial initial; "><pre style="line-height: 16px; ">x <span style="color: rgb(102, 102, 102)">&lt;-</span> <span style="color: rgb(176, 0, 64); ">c</span>(<span style="color: rgb(102, 102, 102); ">1</span>, <span style="color: rgb(102, 102, 102); ">2</span>, <span style="color: rgb(0, 128, 0); font-weight: bold; ">NA</span>, <span style="color: rgb(102, 102, 102); ">3</span>)</pre></div></td></tr></tbody></table></center><div><br /></div>What is the result of the following expression?<div><br /></div><div><center style="text-align: -webkit-auto;"><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #666666">!</span><span style="color: #008000">is.na</span>(x)] </pre></div> </td></tr></tbody></table></center><br /></center></div></div></div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #888888">[1] 1 2 3</span> </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">The expression <code class="myCodeClass">x[!is.na(x)]</code> captures all non-missing values of <code class="myCodeClass">x</code>. You might read it as:<div><br /></div><div><b>subset of x where x is not NA</b></div><div><br /></div><div>It is extremely commonly used in R because often you have to remove missing values before you can perform statistical summaries such as averaging.</div><div><br /></div><div>It's worth understanding how this works under the hood so let's break it down:<div><br /></div><div>Note that <code class="myCodeClass">is.na(x)</code> creates a logical vector which is <code class="myCodeClass">TRUE</code> at each position where&nbsp;<code class="myCodeClass">x</code> has a missing value. In this case, <code class="myCodeClass">is.na(x)</code> is&nbsp;</div><div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="font-weight: bold"><font color="#ff0000">FALSE</font></span> <span style="font-weight: bold; "><font color="#ff0000">FALSE</font></span> <span style="color: #008000; font-weight: bold">TRUE</span> <span style="font-weight: bold; "><font color="#ff0000">FALSE</font></span> </pre></div> </td></tr></tbody></table></center><br /></div><div><code class="myCodeClass">!is.na(x)</code> is the negation of that logical vector, i.e.:</div><div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">TRUE</span> <span style="color: #008000; font-weight: bold">TRUE</span> <span style="font-weight: bold; "><font color="#ff0000">FALSE</font></span> <span style="color: #008000; font-weight: bold">TRUE</span> </pre></div> </td></tr></tbody></table></center><br /></div><div><code class="myCodeClass">x[!is.na(x)]</code> then uses the above vector as a<b>&nbsp;logical index vector</b>. The result is that only the elements of <code class="myCodeClass">x</code> that are not <code class="myCodeClass">NA</code>&nbsp;are selected.</div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector <code class="myCodeClass">z</code> with many values, some of which are missing values. Create a vector <code class="myCodeClass">z_complete</code>&nbsp;which contains all elements of <code class="myCodeClass">z</code> that are not missing (<code class="myCodeClass">NA</code>).</div>
+  <div class="incremental">
+    <div class="card"><hr><center style="text-align: -webkit-auto;"><center><table class="highlighttable"><tbody><tr><td><br /></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">z_complete <span style="color: #666666">&lt;-</span> z[<span style="color: #666666">!</span><span style="color: #008000">is.na</span>(z)] </pre></div> </td></tr></tbody></table></center></center></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a numeric vector <code class="myCodeClass">age</code>. Select the subset of elements of&nbsp;<code class="myCodeClass">age</code>&nbsp;that are less than <code class="myCodeClass">65</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">age[age <span style="color: #666666">&lt;</span> <span style="color: #666666">65</span>]</pre></div></td></tr></tbody></table></center>    <br><br> <div class="extra">Do we have to specify <code class="myCodeClass">age</code> twice in that expression?<div><br /></div><div>The answer is yes.<br /><div><br /></div><div>The part in square brackes generates a <b>logical vector</b> that is <code class="myCodeClass">TRUE</code> for elements of <code class="myCodeClass">age</code> that are <code class="myCodeClass">&lt; 65</code>.&nbsp;</div><div><br /></div><div>This vector is then used as a <b>logical</b>&nbsp;<b>index</b>&nbsp;<b>vector&nbsp;</b>for subsetting of the vector <code class="myCodeClass">age</code>, selecting all the values that are <code class="myCodeClass">&lt; 65</code>.</div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector&nbsp;<code class="myCodeClass">x</code>. Retrieve the 3rd, 5th, and 7th elements of&nbsp;<code class="myCodeClass">x</code>.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #B00040">c</span>(<span style="color: #666666">3</span>, <span style="color: #666666">5</span>, <span style="color: #666666">7</span>)]</pre></div></td></tr></tbody></table></center>    <br><br> <div class="extra">A <b>numeric index vector</b>&nbsp;is supplied to select the desired elements.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a vector x. Subset all elements <u>except</u>&nbsp;the 2nd and the 10th one.</div>
+  <div class="incremental">
+    <div class="card"><hr><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #666666">-</span><span style="color: #B00040">c</span>(<span style="color: #666666">2</span>, <span style="color: #666666">10</span>)] </pre></div> </td></tr></tbody></table></center>    <br><br> <div class="extra">You can use a <b>negative numeric index</b>&nbsp;to select all element <b>except</b>&nbsp;the 2nd and 10th one.&nbsp;<div><br /></div><div>Note the minus (<code class="myCodeClass">-</code>) sign before <code class="myCodeClass">c(2, 10)</code>.&nbsp;</div><div><br /></div><div>By the way, another way of writing the same code would be&nbsp;<div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">x[<span style="color: #B00040">c</span>(<span style="color: #666666">-2</span>, <span style="color: #666666">-10</span>)] </pre></div> </td></tr></tbody></table></center><br /></div><div>However, the <code class="myCodeClass">-c(...)</code> shorthand&nbsp;is more commonly used.</div></div></div></div>
+  </div>
+</div>
+
+</body>
+</html>
+

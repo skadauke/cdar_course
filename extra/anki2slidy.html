@@ -120,6 +120,12 @@ $(document).ready(function () {
 </div>
 
 
+<!-- 
+
+TODO:
+- Don't hard-code titles. Title string must be plugged into the HTML header and the title slide.
+
+-->
 <p>To incorporate Anki cards in a flipped classroom-based teaching approach, I’d like to be able to present the content of Anki cards I’ve prepared for the class as a PowerPoint-like presentation.</p>
 <p>Second, I’d like to be able to create a print-out that <em>only shows the question part</em> of the flashcard. Print-outs will be used as problem sets in class.</p>
 <p>The purpose of this literate program is to convert exported Anki cards to a <a href="https://www.w3.org/Talks/Tools/Slidy2/#(1)">Slidy</a> presentation. I will add some CSS to hide the answers on printed-out slides.</p>
@@ -806,10 +812,10 @@ hist(mtcars<span style="color: #666666">$</span>mpg)
 source_dir &lt;- &quot;/Users/skadauke/code/cdar_course&quot;
 dest_dir &lt;- &quot;/Users/skadauke/code/cdar_course/docs&quot;
 
-source_file &lt;- &quot;01_ankis.txt&quot;
+source_file &lt;- &quot;02_ankis.txt&quot;
 source_file_abs &lt;- file.path(source_dir, source_file)
 
-dest_root &lt;- &quot;01_ankis&quot;
+dest_root &lt;- &quot;02_ankis&quot;
 
 dest_file &lt;- paste0(dest_root, &quot;.html&quot;)
 dest_file_abs &lt;- file.path(dest_dir, dest_file)
@@ -829,7 +835,7 @@ deck &lt;- read_tsv(source_file_abs, col_names = c(&quot;front&quot;, &quot;back
  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
 &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt; 
 &lt;head&gt; 
-  &lt;title&gt;Session 1&lt;/title&gt; 
+  &lt;title&gt;Session 2&lt;/title&gt; 
   &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen, projection, print&quot; 
    href=&quot;https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css&quot; /&gt; 
   &lt;script src=&quot;https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js&quot; 
@@ -915,7 +921,7 @@ img[src*=&quot;latex&quot;] {
 </ol>
 <pre class="r"><code>title &lt;- '&lt;div class=&quot;slide cover&quot;&gt;
   &lt;br&gt;&lt;br&gt;
-  &lt;h1&gt;Session 1 - Basics&lt;/h1&gt;
+  &lt;h1&gt;Session 2 - Vectors and Missing Values&lt;/h1&gt;
 &lt;/div&gt;
 '</code></pre>
 <ol start="6" style="list-style-type: decimal">
@@ -940,14 +946,14 @@ for (i in 1:nrow(deck)) {
   file.remove(dir(asset_dir_abs, pattern = &quot;*&quot;, full.names = TRUE))
 } else {
   dir.create(asset_dir_abs)
-}</code></pre>
-<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
-<pre class="r"><code>library(stringr)
+}
+
+library(stringr)
 
 images &lt;- str_match_all(slides, '&lt;img src=&quot;(.*?)&quot;')[[1]][,2]
 
 do.call(file.copy, args=list(file.path(img_dir, images), asset_dir_abs))</code></pre>
-<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre><code>## logical(0)</code></pre>
 <pre class="r"><code>slides &lt;- str_replace_all(slides, '&lt;img src=&quot;', paste0('&lt;img src=&quot;', asset_dir, '/'))
 
 if (length(list.files(asset_dir_abs, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {
