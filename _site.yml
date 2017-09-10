@@ -10,7 +10,7 @@ navbar:
     - text: "Session 2"
       href: 02_vectors_na_anki.html
     - text: "Session 3"
-      href: 03_
+      href: 03_rmarkdown_lookingatdata.html
 #    - text: "Session 4"
 #      href: 
 output_dir: "docs"
