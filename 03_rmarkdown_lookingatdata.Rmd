@@ -2,32 +2,78 @@
 output: html_document
 ---
 
-Session 3 – Monday 9/11, 2 PM, GRJ245
+<!-- TODO: 
 
-Objectives:
-•	Learn how to create and “knit” a simple R Markdown document
-•	Become familiar with the following aspects of R:
-o	Subsetting vectors
-o	Data frames
-o	Subsetting data frames
-o	Looking at a data frame to understand its structure and contents
+- R Markdown anki cards (6-10)
+  - How to create an Rmd document in RStudio
+  - Bold, italic
+  - Unordered list
+  - R code chunk
+  - Inline code
+  - Link
+  - Image
+- Create patients data set
+  - subset of Framingham - period 3 only
+    - randid
+    - age
+    - sex
+    - cursmoke
+    - prevhyp
+    - prevchd
+    - diabetes
+    - bmi
+    - totchol
+    - hdlc
+    - ldlc
+    - anychd
+    - death
 
-Please view the following*:
-•	Literate Statistical Programming with knitr (Roger Peng): https://www.youtube.com/watch?v=YcJb1HBc-1Q
-•	R Markdown Demonstration (Roger Peng): https://www.youtube.com/watch?v=PKsBiCUdS3w
-* Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.
+TO THE INSTRUCTOR:
+- Bring R Markdown cheat sheet to class
+- In class: Reproduce a R Markdown document (hand out a print-out)
+  - Download patients data from github site to a specific folder
+  - Read_csv data (will have to install tidyverse)
+  - Look at data: str, summary
+  - Count NA's (sum, mean) in each column
+  - 
 
-I recommend downloading and printing the R Markdown Cheat Sheet as a reference:
-https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf
+
+-->
+
+## Session 3: Data Frames and R Markdown
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| 9/11/17 | 2 PM     | GRJ245   |
+
+### Objectives
+
+*	Become familiar with the following aspects of R:
+    * Data frames
+* Learn how to examine a data frame to understand its structure and contents
+*	Learn how to create and "knit" an R Markdown document
+
+### Pre-Session Activities
+
+Please view the following:
+
+*	**[7 min]** [R Markdown Demonstration](https://www.youtube.com/watch?v=PKsBiCUdS3w) (Roger Peng, JHU Biostatistics)[^1]
+
+[^1]: Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.
 
 Swirl modules:
-1.	R Programming: Subsetting Vectors
-2.	R Programming: Matrices and Data Frames
-3.	R Programming: Looking at Data
 
+* R Programming: Matrices and Data Frames
+* R Programming: Looking at Data
 
+<!--
+### Materials
 
-In class: Reproduce the “My First Markdown Document!” they saw in the intro lecture
-
-Session 4 – Friday 9/15, 10 AM, GRJ245
+* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf). In RStudio this can also be found in the **Help** menu → **Cheatsheets** → **R Markdown Cheat Sheet**
+* [Framingham data set (CSV)](framingham.csv)
+* [Framingham Rmd document](framingham.Rmd)
+* [Session 3 slides (Slidy)](03_ankis.html)
+* [Session 3 hand-out (no answers)](03_ankis_no_answers.pdf)
+* [Session 3 Anki cards (.apkg)](03_ankis.apkg)
 
+-->
