@@ -1,0 +1,42 @@
+---
+output: html_document
+---
+
+<!-- 
+
+TO DO:
+
+TO THE INSTRUCTOR:
+
+
+-->
+
+## Session x: ........
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| xxx | xxx     | GRJ245   |
+
+### Objectives
+
+*	...
+*	Become familiar with the following aspects of R:
+    * xxx
+
+### Pre-Session Activities
+
+Please view the following:
+
+* **[x min]** [Link](Link) (xxx)
+
+Swirl modules:
+
+* xxx
+
+<!--
+### Materials
+
+* [Session x slides (Slidy)](x_ankis.html)
+* [Session x hand-out (no answers)](x_ankis_no_answers.pdf)
+* [Session x Anki cards (.apkg)](x_ankis.apkg)
+-->

@@ -184,6 +184,12 @@ $(document).ready(function () {
 <li>
   <a href="01_basics.html">Session 1</a>
 </li>
+<li>
+  <a href="02_vectors_na_anki.html">Session 2</a>
+</li>
+<li>
+  <a href="03_">Session 3</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -200,12 +206,102 @@ $(document).ready(function () {
 </div>
 
 
-<p>Session 3 – Monday 9/11, 2 PM, GRJ245</p>
-<p>Objectives: • Learn how to create and “knit” a simple R Markdown document • Become familiar with the following aspects of R: o Subsetting vectors o Data frames o Subsetting data frames o Looking at a data frame to understand its structure and contents</p>
-<p>Please view the following<em>: • Literate Statistical Programming with knitr (Roger Peng): <a href="https://www.youtube.com/watch?v=YcJb1HBc-1Q" class="uri">https://www.youtube.com/watch?v=YcJb1HBc-1Q</a> • R Markdown Demonstration (Roger Peng): <a href="https://www.youtube.com/watch?v=PKsBiCUdS3w" class="uri">https://www.youtube.com/watch?v=PKsBiCUdS3w</a> </em> Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.</p>
-<p>I recommend downloading and printing the R Markdown Cheat Sheet as a reference: <a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf</a></p>
-<p>Swirl modules: 1. R Programming: Subsetting Vectors 2. R Programming: Matrices and Data Frames 3. R Programming: Looking at Data</p>
-<p>In class: Reproduce the “My First Markdown Document!” they saw in the intro lecture  Session 4 – Friday 9/15, 10 AM, GRJ245</p>
+<!-- TODO: 
+
+- R Markdown anki cards (6-10)
+  - How to create an Rmd document in RStudio
+  - Bold, italic
+  - Unordered list
+  - R code chunk
+  - Inline code
+  - Link
+  - Image
+- Create patients data set
+  - subset of Framingham - period 3 only
+    - randid
+    - age
+    - sex
+    - cursmoke
+    - prevhyp
+    - prevchd
+    - diabetes
+    - bmi
+    - totchol
+    - hdlc
+    - ldlc
+    - anychd
+    - death
+
+TO THE INSTRUCTOR:
+- Bring R Markdown cheat sheet to class
+- In class: Reproduce a R Markdown document (hand out a print-out)
+  - Download patients data from github site to a specific folder
+  - Read_csv data (will have to install tidyverse)
+  - Look at data: str, summary
+  - Count NA's (sum, mean) in each column
+  - 
+
+
+-->
+<div id="session-3-data-frames-and-r-markdown" class="section level2">
+<h2>Session 3: Data Frames and R Markdown</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Time</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9/11/17</td>
+<td>2 PM</td>
+<td>GRJ245</td>
+</tr>
+</tbody>
+</table>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>Become familiar with the following aspects of R:
+<ul>
+<li>Data frames</li>
+</ul></li>
+<li>Learn how to examine a data frame to understand its structure and contents</li>
+<li>Learn how to create and “knit” an R Markdown document</li>
+</ul>
+</div>
+<div id="pre-session-activities" class="section level3">
+<h3>Pre-Session Activities</h3>
+<p>Please view the following:</p>
+<ul>
+<li><strong>[7 min]</strong> <a href="https://www.youtube.com/watch?v=PKsBiCUdS3w">R Markdown Demonstration</a> (Roger Peng, JHU Biostatistics)<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
+</ul>
+<p>Swirl modules:</p>
+<ul>
+<li>R Programming: Matrices and Data Frames</li>
+<li>R Programming: Looking at Data</li>
+</ul>
+<!--
+### Materials
+
+* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf). In RStudio this can also be found in the **Help** menu → **Cheatsheets** → **R Markdown Cheat Sheet**
+* [Framingham data set (CSV)](framingham.csv)
+* [Framingham Rmd document](framingham.Rmd)
+* [Session 3 slides (Slidy)](03_ankis.html)
+* [Session 3 hand-out (no answers)](03_ankis_no_answers.pdf)
+* [Session 3 Anki cards (.apkg)](03_ankis.apkg)
+
+-->
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
 
 
 

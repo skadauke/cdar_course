@@ -9,8 +9,8 @@ navbar:
       href: 01_basics.html
     - text: "Session 2"
       href: 02_vectors_na_anki.html
-#    - text: "Session 3"
-#      href: 
+    - text: "Session 3"
+      href: 03_
 #    - text: "Session 4"
 #      href: 
 output_dir: "docs"
