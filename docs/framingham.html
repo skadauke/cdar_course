@@ -206,86 +206,46 @@ $(document).ready(function () {
 </div>
 
 
-<!-- TODO: 
+<div id="framingham-case-study" class="section level2">
+<h2>Framingham Case Study</h2>
+<p>The Framingham Heart Study led to the publication of more than 3,000 journal articles, the most highly cited of which is Gordon et al. <em>Am J Med</em> 1977, a seminal paper that linked high HDL cholesterol with lower risk for CHD.</p>
+<p>We will write a literate program that uses data from the Framingham study to examine whether we can reproduce the link between HDL cholesterol and outcomes such as CHD or death from any cause.</p>
+<div id="install-the-tidyverse-packages-if-necessary" class="section level3">
+<h3>Install the tidyverse packages, if necessary</h3>
+<pre class="r"><code>if (!&quot;tidyverse&quot; %in% installed.packages()) install.packages(&quot;tidyverse&quot;)</code></pre>
+</div>
+<div id="download-the-framingham-data" class="section level3">
+<h3>Download the Framingham data</h3>
+<p>Download <code>framingham.xlsx</code> from the course website.</p>
+<pre class="r"><code>download.file(&quot;https://skadauke.github.io/cdar_course/framingham.xlsx&quot;,
+              destfile = &quot;framingham.xlsx&quot;)</code></pre>
+</div>
+<div id="load-the-data" class="section level3">
+<h3>Load the data</h3>
+<p>First load the <code>tidyverse</code> and <code>readxl</code> packages for data manipulation and functions and to load Excel files.</p>
+<p>Then load the file <code>framingham.xlsx</code> into a data frame named <code>framingham</code>.</p>
+<pre class="r"><code>library(tidyverse)
+library(readxl)
 
-✓ Create patients data set
-  - subset of Framingham - period 3 only
-- Create short R Markdown document
-  - Create project in RStudio
-  - Download framingham data
-  - Read_excel data (will have to install tidyverse; write out this code which installs and loads it if needed)
-  - Look at data: str, summary
-  - Count NA's (sum, mean) in each column and decide whether that's a problem
-  - Look at the top 6 rows
-  - extract rows from top and lower quintile of hdl data, and summarize outcomes
-  - perform a t test to see if the difference in any_chd is statistically significant (assume that the any_chd data is normally distributed)
-- Review Ankis and create .html, .pdf, .apkg
-
-TO THE INSTRUCTOR:
-- Go over cards (but quickly, 15' for work, 15' for review)
-- Hand out R Markdown cheat sheet
-- In class: Reproduce the R Markdown document framingham.Rmd (hand out print out with
-  some of the code obscured)
--->
-<div id="session-3-data-frames-and-r-markdown" class="section level2">
-<h2>Session 3: Data Frames and R Markdown</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Date</th>
-<th>Time</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>9/11/17</td>
-<td>2 PM</td>
-<td>GRJ245</td>
-</tr>
-</tbody>
-</table>
-<div id="objectives" class="section level3">
-<h3>Objectives</h3>
-<ul>
-<li>Become familiar with the following aspects of R:
-<ul>
-<li>Data frames</li>
-</ul></li>
-<li>Learn how to examine a data frame to understand its structure and contents</li>
-<li>Learn how to create and “knit” an R Markdown document</li>
-</ul>
+framingham &lt;- read_excel(&quot;framingham.xlsx&quot;)</code></pre>
 </div>
-<div id="pre-session-activities" class="section level3">
-<h3>Pre-Session Activities</h3>
-<p>Please view the following:</p>
-<ul>
-<li><strong>[7 min]</strong> <a href="https://www.youtube.com/watch?v=PKsBiCUdS3w">R Markdown Demonstration</a> (Roger Peng, JHU Biostatistics)<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
-</ul>
-<p>Swirl modules:</p>
-<ul>
-<li>R Programming: Matrices and Data Frames</li>
-<li>R Programming: Looking at Data</li>
-</ul>
+<div id="look-at-the-data" class="section level3">
+<h3>Look at the data</h3>
+<blockquote>
+<p>Examine the structure of the data using the <code>str()</code> function.</p>
+</blockquote>
+<blockquote>
+<p>Use the <code>summary()</code> function on <code>framingham</code> to create a brief statistical summary of the distribution of data in each of its columns.</p>
+</blockquote>
+<blockquote>
+<p>What proportion of participants were smokers at the time of enrollment? What proportion had CHD? What proportion of participants developed CHD at the end of the follow up period? What proportion of participants died?</p>
+</blockquote>
+<p><em>Hint</em>: You don’t need to enter any additional R code to answer these questions. Take a look at the output of the <code>summary()</code> command and remember that if the values of a vector are only <code>0</code> and <code>1</code> ( or <code>TRUE</code> and <code>FALSE</code>), the mean of the vector is equal to the proportion of values that are <code>1</code> (or <code>TRUE</code>).</p>
+<p>From the above look at the data, it appears that a number of rows are missing HDL cholesterol data. To be exact, there are a total of 236 rows with missing HDL data.</p>
+<blockquote>
+<p>What is the proportion of rows with missing HDL data?</p>
+</blockquote>
 </div>
-<div id="materials" class="section level3">
-<h3>Materials</h3>
-<ul>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheat Sheet</a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></li>
-<li><a href="framingham.xlsx">Framingham data set (Excel)</a></li>
-<li><a href="03_framingham.pdf">Framingham Case Study (PDF)</a></li>
-<li><a href="03_ankis.html">Session 3 slides (Slidy)</a></li>
-<li><a href="03_ankis_no_answers.pdf">Session 3 hand-out (no answers)</a></li>
-<li><a href="03_ankis.apkg">Session 3 Anki cards (.apkg)</a></li>
-</ul>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Don’t worry about the R commands for simulation and regression models. Focus on the big picture: how to create and knit a simple R Markdown document.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>In RStudio this can also be found in the <strong>Help</strong> menu → <strong>Cheatsheets</strong> → <strong>R Markdown Cheat Sheet</strong><a href="#fnref2">↩</a></p></li>
-</ol>
 </div>
 
 

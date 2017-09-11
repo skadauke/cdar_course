@@ -4,40 +4,24 @@ output: html_document
 
 <!-- TODO: 
 
-- R Markdown anki cards (6-10)
-  - How to create an Rmd document in RStudio
-  - Bold, italic
-  - Unordered list
-  - R code chunk
-  - Inline code
-  - Link
-  - Image
-- Create patients data set
+✓ Create patients data set
   - subset of Framingham - period 3 only
-    - randid
-    - age
-    - sex
-    - cursmoke
-    - prevhyp
-    - prevchd
-    - diabetes
-    - bmi
-    - totchol
-    - hdlc
-    - ldlc
-    - anychd
-    - death
+- Create short R Markdown document
+  - Create project in RStudio
+  - Download framingham data
+  - Read_excel data (will have to install tidyverse; write out this code which installs and loads it if needed)
+  - Look at data: str, summary
+  - Count NA's (sum, mean) in each column and decide whether that's a problem
+  - Look at the top 6 rows
+  - extract rows from top and lower quintile of hdl data, and summarize outcomes
+  - perform a t test to see if the difference in any_chd is statistically significant (assume that the any_chd data is normally distributed)
+- Review Ankis and create .html, .pdf, .apkg
 
 TO THE INSTRUCTOR:
-- Bring R Markdown cheat sheet to class
-- In class: Reproduce a R Markdown document (hand out a print-out)
-  - Download patients data from github site to a specific folder
-  - Read_csv data (will have to install tidyverse)
-  - Look at data: str, summary
-  - Count NA's (sum, mean) in each column
-  - 
-
-
+- Go over cards (but quickly, 15' for work, 15' for review)
+- Hand out R Markdown cheat sheet
+- In class: Reproduce the R Markdown document framingham.Rmd (hand out print out with
+  some of the code obscured)
 -->
 
 ## Session 3: Data Frames and R Markdown
@@ -66,14 +50,13 @@ Swirl modules:
 * R Programming: Matrices and Data Frames
 * R Programming: Looking at Data
 
-<!--
 ### Materials
 
-* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf). In RStudio this can also be found in the **Help** menu → **Cheatsheets** → **R Markdown Cheat Sheet**
-* [Framingham data set (CSV)](framingham.csv)
-* [Framingham Rmd document](framingham.Rmd)
+* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)[^2]
+* [Framingham data set (Excel)](framingham.xlsx)
+* [Framingham Case Study (PDF)](03_framingham.pdf)
 * [Session 3 slides (Slidy)](03_ankis.html)
 * [Session 3 hand-out (no answers)](03_ankis_no_answers.pdf)
 * [Session 3 Anki cards (.apkg)](03_ankis.apkg)
 
--->
+[^2]: In RStudio this can also be found in the **Help** menu → **Cheatsheets** → **R Markdown Cheat Sheet**
