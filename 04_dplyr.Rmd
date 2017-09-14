@@ -1,0 +1,54 @@
+---
+output: html_document
+---
+
+<!-- 
+
+TO DO:
+
+TO THE INSTRUCTOR:
+
+
+-->
+
+## Session 4: Manipulating Data Frames with dplyr
+
+| Date    | Time      | Location |
+|---------|-----------|----------|
+| 9/15/17 | 10 AM     | GRJ245   |
+
+### Objectives
+
+*	Become familiar with the following aspects of R:
+    * The pipe `%>%` operator
+    * The dplyr functions `select()`, `filter()`, `arrange()`, and `mutate()`
+    * The split-apply-combine workflow with `group_by()` and `summarize()`
+    * Augmenting a data frame with data stored in another data frame using `left_join()`
+
+### Pre-Session Activities
+
+Please view the following:
+
+* **[4 min]** [The Pipe Operator](https://www.youtube.com/watch?v=9yjhxvu-pDg) (Ben Stenhaug)
+* **[10 min]** [The 5 Verbs of dplyr](https://www.youtube.com/watch?v=sVISY_27znA) (Ben Stenhaug)
+* **[3 min]** [Understanding Joins](https://www.youtube.com/watch?v=Eqvm9KYWEO4) (Garrett Grolemund, DataCamp)
+
+Swirl modules:
+
+* Please install the **Getting and Cleaning Data** swirl course by issuing the following commands in R:
+```{r, eval=FALSE}
+library(swirl)
+install_course("Getting and Cleaning Data")
+```
+* Getting and Cleaning Data: Manipulating Data with dplyr[^1]
+* Getting and Cleaning Data: Grouping and Chaining with dplyr
+
+[^1]: Note that when you're asked whether you'd like credit on Coursera.org please say "no".
+
+<!--
+### Materials
+
+* [Session x slides (Slidy)](x_ankis.html)
+* [Session x hand-out (no answers)](x_ankis_no_answers.pdf)
+* [Session x Anki cards (.apkg)](x_ankis.apkg)
+-->

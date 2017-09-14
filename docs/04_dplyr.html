@@ -212,13 +212,13 @@ $(document).ready(function () {
 <!-- 
 
 TO DO:
-- Create some Ankis to test knowledge about Anki as well as some examples of poorly formatted and well-formatted cards?
 
+TO THE INSTRUCTOR:
 
 
 -->
-<div id="session-2-vectors-missing-values-and-anki" class="section level2">
-<h2>Session 2: Vectors, Missing Values, and Anki</h2>
+<div id="session-4-manipulating-data-frames-with-dplyr" class="section level2">
+<h2>Session 4: Manipulating Data Frames with dplyr</h2>
 <table>
 <thead>
 <tr class="header">
@@ -229,7 +229,7 @@ TO DO:
 </thead>
 <tbody>
 <tr class="odd">
-<td>9/8/17</td>
+<td>9/15/17</td>
 <td>10 AM</td>
 <td>GRJ245</td>
 </tr>
@@ -238,12 +238,12 @@ TO DO:
 <div id="objectives" class="section level3">
 <h3>Objectives</h3>
 <ul>
-<li>Gain an appreciation for spaced repetition as a learning strategy</li>
 <li>Become familiar with the following aspects of R:
 <ul>
-<li>Vectors</li>
-<li>Missing values (<code>NA</code>, <code>NaN</code>, <code>Inf</code>)</li>
-<li>Subsetting vectors</li>
+<li>The pipe <code>%&gt;%</code> operator</li>
+<li>The dplyr functions <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, and <code>mutate()</code></li>
+<li>The split-apply-combine workflow with <code>group_by()</code> and <code>summarize()</code></li>
+<li>Augmenting a data frame with data stored in another data frame using <code>left_join()</code></li>
 </ul></li>
 </ul>
 </div>
@@ -251,34 +251,34 @@ TO DO:
 <h3>Pre-Session Activities</h3>
 <p>Please view the following:</p>
 <ul>
-<li><strong>[4 min]</strong> <a href="https://www.youtube.com/watch?v=cVf38y07cfk">Spaced Repetition</a> (osmosis.org)</li>
+<li><strong>[4 min]</strong> <a href="https://www.youtube.com/watch?v=9yjhxvu-pDg">The Pipe Operator</a> (Ben Stenhaug)</li>
+<li><strong>[10 min]</strong> <a href="https://www.youtube.com/watch?v=sVISY_27znA">The 5 Verbs of dplyr</a> (Ben Stenhaug)</li>
+<li><strong>[3 min]</strong> <a href="https://www.youtube.com/watch?v=Eqvm9KYWEO4">Understanding Joins</a> (Garrett Grolemund, DataCamp)</li>
 </ul>
 <p>Swirl modules:</p>
 <ul>
-<li>R Programming: Vectors</li>
-<li>R Programming: Missing Values</li>
-<li>R Programming: Subsetting Vectors</li>
+<li>Please install the <strong>Getting and Cleaning Data</strong> swirl course by issuing the following commands in R:</li>
 </ul>
-</div>
-<div id="optional-resources" class="section level3">
-<h3>Optional Resources</h3>
-<p>Here are some resources if you’re interested in further exploring spaced repetition and Anki:</p>
+<pre class="r"><code>library(swirl)
+install_course(&quot;Getting and Cleaning Data&quot;)</code></pre>
 <ul>
-<li><a href="https://apps.ankiweb.net/">Anki 2 download page</a></li>
-<li>You can also set up an <a href="https://ankiweb.net/">Ankiweb</a> account to sync your decks between devices and review cards on the web.</li>
-<li><a href="https://www.youtube.com/watch?v=QS2G-k2hQyg&amp;yt">Anki 2: Shared decks and review basics</a></li>
-<li><a href="https://www.supermemo.com/en/articles/20rules">Twenty Rules of Formulating Knowledge</a>. A classic guide to creating efficient flashcards. Don’t worry about the references to the different versions of SuperMemo, it’s a program similar to Anki.</li>
-<li><a href="https://foggymountainpass.com/anki-essentials/">Anki Essentials</a>. A practical illustrated guide to Anki. This ebook used to be free but is now $5 to download. Here are some <a href="https://alexvermeer.com/wp-content/uploads/Anki-Essentials-Free-Chapters.pdf">sample chapters</a>.</li>
+<li>Getting and Cleaning Data: Manipulating Data with dplyr<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
+<li>Getting and Cleaning Data: Grouping and Chaining with dplyr</li>
 </ul>
+<!--
+### Materials
+
+* [Session x slides (Slidy)](x_ankis.html)
+* [Session x hand-out (no answers)](x_ankis_no_answers.pdf)
+* [Session x Anki cards (.apkg)](x_ankis.apkg)
+-->
 </div>
-<div id="materials" class="section level3">
-<h3>Materials</h3>
-<ul>
-<li><a href="02_ankis.html">Session 2 slides (Slidy)</a></li>
-<li><a href="02_ankis_no_answers.pdf">Session 2 hand-out (no answers)</a></li>
-<li><a href="02_ankis.apkg">Session 2 Anki cards (.apkg)</a></li>
-</ul>
 </div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note that when you’re asked whether you’d like credit on Coursera.org please say “no”.<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 

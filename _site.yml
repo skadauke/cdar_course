@@ -11,6 +11,6 @@ navbar:
       href: 02_vectors_na_anki.html
     - text: "Session 3"
       href: 03_rmarkdown_lookingatdata.html
-#    - text: "Session 4"
-#      href: 
+    - text: "Session 4"
+      href: 04_dplyr.html
 output_dir: "docs"
