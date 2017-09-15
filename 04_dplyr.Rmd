@@ -47,7 +47,6 @@ Swirl modules:
 * Getting and Cleaning Data: Manipulating Data with dplyr
 * Getting and Cleaning Data: Grouping and Chaining with dplyr
 
-
 ### Materials
 
 * [Framingham data set (Excel)](framingham.xlsx)
