@@ -41,12 +41,21 @@ Please install the **Getting and Cleaning Data** swirl course by issuing the fol
 library(swirl)
 install_course("Getting and Cleaning Data")
 ```
+<<<<<<< HEAD
 
 Swirl modules:
 
 * Getting and Cleaning Data: Manipulating Data with dplyr
 * Getting and Cleaning Data: Grouping and Chaining with dplyr
 
+=======
+
+Swirl modules:
+
+* Getting and Cleaning Data: Manipulating Data with dplyr[^1]
+* Getting and Cleaning Data: Grouping and Chaining with dplyr
+
+>>>>>>> b75ab728af498a2ed1982a755f3619f736a141c5
 ### Materials
 
 * [Framingham data set (Excel)](framingham.xlsx)
