@@ -2,60 +2,193 @@
 
 The Framingham Heart Study led to the publication of more than 3,000 journal articles, the most highly cited of which is Gordon et al. *Am J Med* 1977, a seminal paper that linked high HDL cholesterol with lower risk for CHD.
 
+We will be using a data set made available by the National Heart, Lung, and Blood Institute (NHLBI) that summarizes clinic visit data (history, physical, labs) as well as long-term outcomes for participants of the study. A **code book** that explains the study design, each variables, and its values can be found [here](framingham_code_book.pdf).
+
+For the sake of simplicity, we will use a truncated data set containing only the data from one examination period and a reduced number of columns. The variable (column) names have also been edited for clarity.
+
 We will write a literate program that uses data from the Framingham study to examine whether we can reproduce the link between HDL cholesterol and outcomes such as CHD or death from any cause.
 
-### Install the tidyverse packages, if necessary
+Please note that this data has been treated with statistical methods designed to protect patient confidentiality while largely (but not fully) preserving the structure of the data. Analyses derived from this data are therefore unsuitable for publication.
 
-```{r, results='hide'}
-if (!"tidyverse" %in% installed.packages()) install.packages("tidyverse")
+### Install necessary packages
+
+When R "knits" the document the commands in the following code chunk will be executed, installing and loading any missing packages. It is a good idea to include code that makes sure all dependencies are met so that others (or future-you) can reproduce the analysis. 
+
+You will probably also want to run this code **now** to make sure you have all the packages installed to run all of the code in the remaining code chunks. To run a code chunk click the little green arrow on the top right of the code chunk. Do it now!
+
+```{r, results='hide', message=FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(Hmisc, tidyverse, downloader, readxl, ggplot2)
+detach("package:Hmisc", unload=TRUE) # prevent Hmisc from overwriting summarize()
 ```
 
 ### Download the Framingham data
 
-Download `framingham.xlsx` from the course website. 
+Download `framingham.xlsx` from the course website. (Run the code chunk!)
 
-```{r, results='hide'}
-download.file("https://skadauke.github.io/cdar_course/framingham.xlsx",
-              destfile = "framingham.xlsx")
+```{r}
+download("https://skadauke.github.io/cdar_course/framingham.xlsx",
+        destfile = "framingham.xlsx")
 ```
 
 ### Load the data
 
-First load the `tidyverse` and `readxl` packages for data manipulation and functions and to load Excel files.
+Then load the file into a data frame named `framingham`. If you run the code chunk, `framingham` will be available in your environment. This makes it possible to "play" with the data as you are developing your literate program.
 
-Then load the file `framingham.xlsx` into a data frame named `framingham`.
-
-```{r, results="hide", message=FALSE, warning=FALSE}
-library(tidyverse)
-library(readxl)
-
+```{r}
 framingham <- read_excel("framingham.xlsx")
 ```
 
 ### Look at the data
 
-> Examine the structure of the data using the `str()` function.
+As you "get to know" a new data set, it is a great idea to jot down observations about the data set in the text of a literate program. So let's look at the data and take some notes.
 
-```{r, echo=F, results='hide'}
+First let's examine the structure of the `framingham` data using the `str()` function. Write your code inside the code chunk below. Remember that you can run the code chunk by clicking the little green arrow on the top right of the code chunk.
+
+```{r}
+# YOUR CODE HERE
 str(framingham)
 ```
 
-> Use the `summary()` function on `framingham` to create a brief statistical summary of the distribution of data in each of its columns.
+Look at the output above and consider the following questions:
 
-```{r, echo=FALSE, results='hide'}
+> How many rows does the table have? How many columns?
+
+> Do the column names make sense? 
+
+> How is "any CHD" defined? (Where could you look this up?)
+
+> Do you think each row corresponds to a patient in the study? (Where could you look this up?)
+
+> Are there any columns with missing values?
+
+According to the **code book** for this data set, `sex` is coded as follows:
+
+```
+1 = male
+2 = female
+```
+
+It is a good idea to make the data as self-explanatory as possible. We will therefore recode the `sex` column as a factor variable (R's representation of an unordered categorical variable) with the two levels `male` and `female`.
+
+```{r}
+framingham <- framingham %>%
+  mutate(sex = recode_factor(sex,
+                      `1` = "male",
+                      `2` = "female"))
+
+str(framingham)
+```
+
+Next, let's use the `summary()` function on `framingham` to create a brief statistical summary of the distribution of data in each of its columns. Write your code below and run the code chunk.
+
+```{r}
+# YOUR CODE HERE
 summary(framingham)
 ```
 
-> What proportion of participants were smokers at the time of enrollment? What proportion had CHD?
-> What proportion of participants developed CHD at the end of the follow up period? What proportion of participants died?
+Look at the output of summary and consider the following questions:
+
+> Are men and women equally represented in the study?
+
+> What proportion of participants were smokers at the time of enrollment? 
+
+> What proportion had CHD at enrollment?
+
+> What proportion of participants had developed CHD at the end of the follow up period?
+
+> What proportion of participants died?
+
+> What proportion of participants are *at risk* of developing CHD?
 
 *Hint*: You don't need to enter any additional R code to answer these questions. Take a look at the output of the `summary()` command and remember that if the values of a vector are only `0` and `1` ( or `TRUE` and `FALSE`), the mean of the vector is equal to the proportion of values that are `1` (or `TRUE`).
 
 From the above look at the data, it appears that a number of rows are missing HDL cholesterol data. To be exact, there are a total of 236 rows with missing HDL data. 
 
-> What is the proportion of rows with missing HDL data?
+Let's figure out what the proportion of rows that have missing data in teh `hdl` columns of the `framingham` data frame. Write your code below and run the code chunk.
 
-```{r, echo=FALSE, results='hide'}
+```{r}
+# YOUR CODE HERE
 mean(is.na(framingham$hdl))
 ```
 
+### Examine the relationship between HDL and all-cause mortality
+
+Before we continue, let's remove any rows that don't have a value for `hdl` and store the filtered data set in the variable `hdl_measured`. Fill in the blanks below and run the code.
+
+```{r}
+# FILL IN THE BLANKS
+hdl_measured <- framingham %>%
+  filter(!is.na(hdl))
+```
+
+Let's see whether there might be a dose-dependent effect of HDL on all-cause mortality. We will use the powerful **split-apply-combine** conceptual framework to think through this. 
+
+First we need to **split** the data into several chunks. Since we're interested in outcomes at different HDL levels, we split the data by HDL level. Say we want to split at a HDL of 25, 35, 45, 55, 65, and 75. The first step is the define a vector `cut_points` with those numbers. Use the `seq()` function to create a vector with the above numbers and enter the code in the chunk below.
+
+The `mutate()` function adds a column `hdl_level` which identifies in which bin each row should be chunked.
+
+The `group_by()` function does the actual splitting, by the `hdl_level` column we just generated. 
+
+`summarize()` then **applies** the `mean()` function to `outcome_death_any_cause` which produces a proportion of deaths at each `hdl_level`. Afterwards, it **combines** the resulting data into a new data frame.
+
+Note that the resulting data frame has a completely different structure than the data frame `hdl_measured` we fed into the pipeline. This is typical of split-apply-combine workflows.
+
+```{r}
+# FILL IN THE BLANKS
+cut_points <- seq(25, 75, by=10)
+
+hdl_measured %>%
+  mutate(hdl_level = Hmisc::cut2(hdl, cut_points)) %>%
+  group_by(hdl_level, sex) %>%
+  summarize(death = mean(outcome_death_any_cause))
+```
+
+> Modify the above code to break the data down by `sex` in addition to `hdl_level`
+
+> Does it look like HDL is a good predictor of all-cause mortiality?
+
+### Examine the relationship between HDL and incidence of CHD
+
+We'd like to know if a low HDL value can predict the development of CHD. Some of the patients already had CHD at baseline so we already know that they will have CHD at the end. To find the population **at risk** for developing CHD let's remove all patients that have CHD at baseline. This is captured in the variable `history_chd`. Fill in the blanks in the code below and run the code chunk.
+
+```{r}
+# FILL IN THE BLANKS
+at_risk <- hdl_measured %>%
+  filter(history_chd == 0)
+```
+
+Let's do a split-apply-combine operation similar to the one in the previous section.
+
+1. Create a new column `hdl_level` which contains the results of the `Hmisc::cut2` function already filled in
+2. Break down the data frame by `hdl_level` and `sex`.
+3. Create a summary table with the following two columns:
+    a. `n`: number of patients in the particular group
+    b. `outcome_chd`: proportion of patients that developed CHD (this is coded as `outcome_any_chd`)
+
+```{r}
+outcome_chd_by_hdl_level <- at_risk %>%
+  mutate(hdl_level = Hmisc::cut2(hdl, cut_points)) %>%
+  group_by(hdl_level, sex) %>%
+  summarize(n = n(),
+            outcome_chd = mean(outcome_any_chd))
+
+outcome_chd_by_hdl_level
+```
+
+Let's plot the data.
+
+```{r}
+ggplot(outcome_chd_by_hdl_level, 
+       aes(x = hdl_level, 
+           y = outcome_chd, 
+           color = sex, 
+           size = n)) + 
+  geom_point()
+```
+
+### Next steps...
+
+- Logistic regression?
+- Predict outcomes?
+- ...

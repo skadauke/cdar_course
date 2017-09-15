@@ -190,6 +190,9 @@ $(document).ready(function () {
 <li>
   <a href="03_rmarkdown_lookingatdata.html">Session 3</a>
 </li>
+<li>
+  <a href="04_dplyr.html">Session 4</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -209,42 +212,257 @@ $(document).ready(function () {
 <div id="framingham-case-study" class="section level2">
 <h2>Framingham Case Study</h2>
 <p>The Framingham Heart Study led to the publication of more than 3,000 journal articles, the most highly cited of which is Gordon et al. <em>Am J Med</em> 1977, a seminal paper that linked high HDL cholesterol with lower risk for CHD.</p>
+<p>We will be using a data set made available by the National Heart, Lung, and Blood Institute (NHLBI) that summarizes clinic visit data (history, physical, labs) as well as long-term outcomes for participants of the study. A <strong>code book</strong> that explains the study design, each variables, and its values can be found <a href="framingham_code_book.pdf">here</a>.</p>
+<p>For the sake of simplicity, we will use a truncated data set containing only the data from one examination period and a reduced number of columns. The variable (column) names have also been edited for clarity.</p>
 <p>We will write a literate program that uses data from the Framingham study to examine whether we can reproduce the link between HDL cholesterol and outcomes such as CHD or death from any cause.</p>
-<div id="install-the-tidyverse-packages-if-necessary" class="section level3">
-<h3>Install the tidyverse packages, if necessary</h3>
-<pre class="r"><code>if (!&quot;tidyverse&quot; %in% installed.packages()) install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>Please note that this data has been treated with statistical methods designed to protect patient confidentiality while largely (but not fully) preserving the structure of the data. Analyses derived from this data are therefore unsuitable for publication.</p>
+<div id="install-necessary-packages" class="section level3">
+<h3>Install necessary packages</h3>
+<p>When R “knits” the document the commands in the following code chunk will be executed, installing and loading any missing packages. It is a good idea to include code that makes sure all dependencies are met so that others (or future-you) can reproduce the analysis.</p>
+<p>You will probably also want to run this code <strong>now</strong> to make sure you have all the packages installed to run all of the code in the remaining code chunks. To run a code chunk click the little green arrow on the top right of the code chunk. Do it now!</p>
+<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(Hmisc, tidyverse, downloader, readxl, ggplot2)
+detach(&quot;package:Hmisc&quot;, unload=TRUE) # prevent Hmisc from overwriting summarize()</code></pre>
 </div>
 <div id="download-the-framingham-data" class="section level3">
 <h3>Download the Framingham data</h3>
-<p>Download <code>framingham.xlsx</code> from the course website.</p>
-<pre class="r"><code>download.file(&quot;https://skadauke.github.io/cdar_course/framingham.xlsx&quot;,
-              destfile = &quot;framingham.xlsx&quot;)</code></pre>
+<p>Download <code>framingham.xlsx</code> from the course website. (Run the code chunk!)</p>
+<pre class="r"><code>download(&quot;https://skadauke.github.io/cdar_course/framingham.xlsx&quot;,
+        destfile = &quot;framingham.xlsx&quot;)</code></pre>
 </div>
 <div id="load-the-data" class="section level3">
 <h3>Load the data</h3>
-<p>First load the <code>tidyverse</code> and <code>readxl</code> packages for data manipulation and functions and to load Excel files.</p>
-<p>Then load the file <code>framingham.xlsx</code> into a data frame named <code>framingham</code>.</p>
-<pre class="r"><code>library(tidyverse)
-library(readxl)
-
-framingham &lt;- read_excel(&quot;framingham.xlsx&quot;)</code></pre>
+<p>Then load the file into a data frame named <code>framingham</code>. If you run the code chunk, <code>framingham</code> will be available in your environment. This makes it possible to “play” with the data as you are developing your literate program.</p>
+<pre class="r"><code>framingham &lt;- read_excel(&quot;framingham.xlsx&quot;)</code></pre>
 </div>
 <div id="look-at-the-data" class="section level3">
 <h3>Look at the data</h3>
+<p>As you “get to know” a new data set, it is a great idea to jot down observations about the data set in the text of a literate program. So let’s look at the data and take some notes.</p>
+<p>First let’s examine the structure of the <code>framingham</code> data using the <code>str()</code> function. Write your code inside the code chunk below. Remember that you can run the code chunk by clicking the little green arrow on the top right of the code chunk.</p>
+<pre class="r"><code># YOUR CODE HERE
+str(framingham)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    3263 obs. of  14 variables:
+##  $ id                     : num  2448 6238 11252 11263 12806 ...
+##  $ age                    : num  52 58 58 55 57 64 55 62 53 51 ...
+##  $ sex                    : num  1 2 2 2 2 1 1 2 2 2 ...
+##  $ current_smoker         : num  0 0 1 0 1 0 0 0 0 1 ...
+##  $ history_htn            : num  0 0 1 1 0 1 1 0 1 1 ...
+##  $ history_chd            : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ history_diabetes       : num  0 0 0 1 0 0 0 0 0 0 ...
+##  $ bmi                    : num  NA 28.5 24.6 31.2 22 ...
+##  $ total_chol             : num  209 237 NA 220 320 280 211 291 159 264 ...
+##  $ hdl                    : num  31 54 NA 46 34 44 48 60 53 58 ...
+##  $ ldl                    : num  178 141 NA 135 286 236 163 217 106 206 ...
+##  $ outcome_any_chd        : num  1 0 0 1 0 0 0 0 0 0 ...
+##  $ outcome_stroke         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ outcome_death_any_cause: num  0 0 0 0 0 0 0 0 1 1 ...</code></pre>
+<p>Look at the output above and consider the following questions:</p>
 <blockquote>
-<p>Examine the structure of the data using the <code>str()</code> function.</p>
+<p>How many rows does the table have? How many columns?</p>
 </blockquote>
 <blockquote>
-<p>Use the <code>summary()</code> function on <code>framingham</code> to create a brief statistical summary of the distribution of data in each of its columns.</p>
+<p>Do the column names make sense?</p>
 </blockquote>
 <blockquote>
-<p>What proportion of participants were smokers at the time of enrollment? What proportion had CHD? What proportion of participants developed CHD at the end of the follow up period? What proportion of participants died?</p>
+<p>How is “any CHD” defined? (Where could you look this up?)</p>
+</blockquote>
+<blockquote>
+<p>Do you think each row corresponds to a patient in the study? (Where could you look this up?)</p>
+</blockquote>
+<blockquote>
+<p>Are there any columns with missing values?</p>
+</blockquote>
+<p>According to the <strong>code book</strong> for this data set, <code>sex</code> is coded as follows:</p>
+<pre><code>1 = male
+2 = female</code></pre>
+<p>It is a good idea to make the data as self-explanatory as possible. We will therefore recode the <code>sex</code> column as a factor variable (R’s representation of an unordered categorical variable) with the two levels <code>male</code> and <code>female</code>.</p>
+<pre class="r"><code>framingham &lt;- framingham %&gt;%
+  mutate(sex = recode_factor(sex,
+                      `1` = &quot;male&quot;,
+                      `2` = &quot;female&quot;))
+
+str(framingham)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    3263 obs. of  14 variables:
+##  $ id                     : num  2448 6238 11252 11263 12806 ...
+##  $ age                    : num  52 58 58 55 57 64 55 62 53 51 ...
+##  $ sex                    : Factor w/ 2 levels &quot;male&quot;,&quot;female&quot;: 1 2 2 2 2 1 1 2 2 2 ...
+##  $ current_smoker         : num  0 0 1 0 1 0 0 0 0 1 ...
+##  $ history_htn            : num  0 0 1 1 0 1 1 0 1 1 ...
+##  $ history_chd            : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ history_diabetes       : num  0 0 0 1 0 0 0 0 0 0 ...
+##  $ bmi                    : num  NA 28.5 24.6 31.2 22 ...
+##  $ total_chol             : num  209 237 NA 220 320 280 211 291 159 264 ...
+##  $ hdl                    : num  31 54 NA 46 34 44 48 60 53 58 ...
+##  $ ldl                    : num  178 141 NA 135 286 236 163 217 106 206 ...
+##  $ outcome_any_chd        : num  1 0 0 1 0 0 0 0 0 0 ...
+##  $ outcome_stroke         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ outcome_death_any_cause: num  0 0 0 0 0 0 0 0 1 1 ...</code></pre>
+<p>Next, let’s use the <code>summary()</code> function on <code>framingham</code> to create a brief statistical summary of the distribution of data in each of its columns. Write your code below and run the code chunk.</p>
+<pre class="r"><code># YOUR CODE HERE
+summary(framingham)</code></pre>
+<pre><code>##        id               age            sex       current_smoker  
+##  Min.   :   2448   Min.   :44.00   male  :1387   Min.   :0.0000  
+##  1st Qu.:2509944   1st Qu.:54.00   female:1876   1st Qu.:0.0000  
+##  Median :5050572   Median :60.00                 Median :0.0000  
+##  Mean   :5028933   Mean   :60.65                 Mean   :0.3435  
+##  3rd Qu.:7501310   3rd Qu.:67.00                 3rd Qu.:1.0000  
+##  Max.   :9999312   Max.   :81.00                 Max.   :1.0000  
+##                                                                  
+##   history_htn      history_chd     history_diabetes       bmi       
+##  Min.   :0.0000   Min.   :0.0000   Min.   :0.00000   Min.   :14.43  
+##  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.00000   1st Qu.:23.19  
+##  Median :1.0000   Median :0.0000   Median :0.00000   Median :25.46  
+##  Mean   :0.5991   Mean   :0.1103   Mean   :0.07784   Mean   :25.89  
+##  3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:0.00000   3rd Qu.:28.06  
+##  Max.   :1.0000   Max.   :1.0000   Max.   :1.00000   Max.   :56.80  
+##                                                      NA&#39;s   :17     
+##    total_chol         hdl              ldl        outcome_any_chd 
+##  Min.   :112.0   Min.   : 10.00   Min.   : 20.0   Min.   :0.0000  
+##  1st Qu.:206.0   1st Qu.: 39.00   1st Qu.:145.0   1st Qu.:0.0000  
+##  Median :234.0   Median : 48.00   Median :173.0   Median :0.0000  
+##  Mean   :236.7   Mean   : 49.36   Mean   :176.5   Mean   :0.2596  
+##  3rd Qu.:264.0   3rd Qu.: 58.00   3rd Qu.:205.0   3rd Qu.:1.0000  
+##  Max.   :625.0   Max.   :189.00   Max.   :565.0   Max.   :1.0000  
+##  NA&#39;s   :214     NA&#39;s   :236      NA&#39;s   :237                     
+##  outcome_stroke    outcome_death_any_cause
+##  Min.   :0.00000   Min.   :0.0000         
+##  1st Qu.:0.00000   1st Qu.:0.0000         
+##  Median :0.00000   Median :0.0000         
+##  Mean   :0.08673   Mean   :0.2375         
+##  3rd Qu.:0.00000   3rd Qu.:0.0000         
+##  Max.   :1.00000   Max.   :1.0000         
+## </code></pre>
+<p>Look at the output of summary and consider the following questions:</p>
+<blockquote>
+<p>Are men and women equally represented in the study?</p>
+</blockquote>
+<blockquote>
+<p>What proportion of participants were smokers at the time of enrollment?</p>
+</blockquote>
+<blockquote>
+<p>What proportion had CHD at enrollment?</p>
+</blockquote>
+<blockquote>
+<p>What proportion of participants had developed CHD at the end of the follow up period?</p>
+</blockquote>
+<blockquote>
+<p>What proportion of participants died?</p>
+</blockquote>
+<blockquote>
+<p>What proportion of participants are <em>at risk</em> of developing CHD?</p>
 </blockquote>
 <p><em>Hint</em>: You don’t need to enter any additional R code to answer these questions. Take a look at the output of the <code>summary()</code> command and remember that if the values of a vector are only <code>0</code> and <code>1</code> ( or <code>TRUE</code> and <code>FALSE</code>), the mean of the vector is equal to the proportion of values that are <code>1</code> (or <code>TRUE</code>).</p>
 <p>From the above look at the data, it appears that a number of rows are missing HDL cholesterol data. To be exact, there are a total of 236 rows with missing HDL data.</p>
+<p>Let’s figure out what the proportion of rows that have missing data in teh <code>hdl</code> columns of the <code>framingham</code> data frame. Write your code below and run the code chunk.</p>
+<pre class="r"><code># YOUR CODE HERE
+mean(is.na(framingham$hdl))</code></pre>
+<pre><code>## [1] 0.07232608</code></pre>
+</div>
+<div id="examine-the-relationship-between-hdl-and-all-cause-mortality" class="section level3">
+<h3>Examine the relationship between HDL and all-cause mortality</h3>
+<p>Before we continue, let’s remove any rows that don’t have a value for <code>hdl</code> and store the filtered data set in the variable <code>hdl_measured</code>. Fill in the blanks below and run the code.</p>
+<pre class="r"><code># FILL IN THE BLANKS
+hdl_measured &lt;- framingham %&gt;%
+  filter(!is.na(hdl))</code></pre>
+<p>Let’s see whether there might be a dose-dependent effect of HDL on all-cause mortality. We will use the powerful <strong>split-apply-combine</strong> conceptual framework to think through this.</p>
+<p>First we need to <strong>split</strong> the data into several chunks. Since we’re interested in outcomes at different HDL levels, we split the data by HDL level. Say we want to split at a HDL of 25, 35, 45, 55, 65, and 75. The first step is the define a vector <code>cut_points</code> with those numbers. Use the <code>seq()</code> function to create a vector with the above numbers and enter the code in the chunk below.</p>
+<p>The <code>mutate()</code> function adds a column <code>hdl_level</code> which identifies in which bin each row should be chunked.</p>
+<p>The <code>group_by()</code> function does the actual splitting, by the <code>hdl_level</code> column we just generated.</p>
+<p><code>summarize()</code> then <strong>applies</strong> the <code>mean()</code> function to <code>outcome_death_any_cause</code> which produces a proportion of deaths at each <code>hdl_level</code>. Afterwards, it <strong>combines</strong> the resulting data into a new data frame.</p>
+<p>Note that the resulting data frame has a completely different structure than the data frame <code>hdl_measured</code> we fed into the pipeline. This is typical of split-apply-combine workflows.</p>
+<pre class="r"><code># FILL IN THE BLANKS
+cut_points &lt;- seq(25, 75, by=10)
+
+hdl_measured %&gt;%
+  mutate(hdl_level = Hmisc::cut2(hdl, cut_points)) %&gt;%
+  group_by(hdl_level, sex) %&gt;%
+  summarize(death = mean(outcome_death_any_cause))</code></pre>
+<pre><code>## Source: local data frame [14 x 3]
+## Groups: hdl_level [?]
+## 
+## # A tibble: 14 x 3
+##    hdl_level    sex     death
+##       &lt;fctr&gt; &lt;fctr&gt;     &lt;dbl&gt;
+##  1 [ 10, 25)   male 0.3064516
+##  2 [ 10, 25) female 0.2222222
+##  3 [ 25, 35)   male 0.3264463
+##  4 [ 25, 35) female 0.2269504
+##  5 [ 35, 45)   male 0.3548387
+##  6 [ 35, 45) female 0.2055215
+##  7 [ 45, 55)   male 0.2346041
+##  8 [ 45, 55) female 0.1391129
+##  9 [ 55, 65)   male 0.3333333
+## 10 [ 55, 65) female 0.1760000
+## 11 [ 65, 75)   male 0.3272727
+## 12 [ 65, 75) female 0.1707317
+## 13 [ 75,189]   male 0.2812500
+## 14 [ 75,189] female 0.1790123</code></pre>
 <blockquote>
-<p>What is the proportion of rows with missing HDL data?</p>
+<p>Modify the above code to break the data down by <code>sex</code> in addition to <code>hdl_level</code></p>
 </blockquote>
+<blockquote>
+<p>Does it look like HDL is a good predictor of all-cause mortiality?</p>
+</blockquote>
+</div>
+<div id="examine-the-relationship-between-hdl-and-incidence-of-chd" class="section level3">
+<h3>Examine the relationship between HDL and incidence of CHD</h3>
+<p>We’d like to know if a low HDL value can predict the development of CHD. Some of the patients already had CHD at baseline so we already know that they will have CHD at the end. To find the population <strong>at risk</strong> for developing CHD let’s remove all patients that have CHD at baseline. This is captured in the variable <code>history_chd</code>. Fill in the blanks in the code below and run the code chunk.</p>
+<pre class="r"><code># FILL IN THE BLANKS
+at_risk &lt;- hdl_measured %&gt;%
+  filter(history_chd == 0)</code></pre>
+<p>Let’s do a split-apply-combine operation similar to the one in the previous section.</p>
+<ol style="list-style-type: decimal">
+<li>Create a new column <code>hdl_level</code> which contains the results of the <code>Hmisc::cut2</code> function already filled in</li>
+<li>Break down the data frame by <code>hdl_level</code> and <code>sex</code>.</li>
+<li>Create a summary table with the following two columns:
+<ol style="list-style-type: lower-alpha">
+<li><code>n</code>: number of patients in the particular group</li>
+<li><code>outcome_chd</code>: proportion of patients that developed CHD (this is coded as <code>outcome_any_chd</code>)</li>
+</ol></li>
+</ol>
+<pre class="r"><code>outcome_chd_by_hdl_level &lt;- at_risk %&gt;%
+  mutate(hdl_level = Hmisc::cut2(hdl, cut_points)) %&gt;%
+  group_by(hdl_level, sex) %&gt;%
+  summarize(n = n(),
+            outcome_chd = mean(outcome_any_chd))
+
+outcome_chd_by_hdl_level</code></pre>
+<pre><code>## Source: local data frame [14 x 4]
+## Groups: hdl_level [?]
+## 
+## # A tibble: 14 x 4
+##    hdl_level    sex     n outcome_chd
+##       &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt;       &lt;dbl&gt;
+##  1 [ 10, 25)   male    49  0.20408163
+##  2 [ 10, 25) female    16  0.12500000
+##  3 [ 25, 35)   male   194  0.30927835
+##  4 [ 25, 35) female   122  0.19672131
+##  5 [ 35, 45)   male   364  0.22802198
+##  6 [ 35, 45) female   295  0.15932203
+##  7 [ 45, 55)   male   304  0.19407895
+##  8 [ 45, 55) female   454  0.13215859
+##  9 [ 55, 65)   male   128  0.17968750
+## 10 [ 55, 65) female   347  0.10951009
+## 11 [ 65, 75)   male    50  0.20000000
+## 12 [ 65, 75) female   192  0.07291667
+## 13 [ 75,189]   male    29  0.13793103
+## 14 [ 75,189] female   153  0.09150327</code></pre>
+<p>Let’s plot the data.</p>
+<pre class="r"><code>ggplot(outcome_chd_by_hdl_level, 
+       aes(x = hdl_level, 
+           y = outcome_chd, 
+           color = sex, 
+           size = n)) + 
+  geom_point()</code></pre>
+<p><img src="framingham_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="next-steps" class="section level3">
+<h3>Next steps…</h3>
+<ul>
+<li>Logistic regression?</li>
+<li>Predict outcomes?</li>
+<li>…</li>
+</ul>
 </div>
 </div>
 

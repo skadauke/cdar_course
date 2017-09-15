@@ -97,9 +97,10 @@ The goal of the proposed course is to introduce clinicians to a reproducible and
 | 9/6/17  | 4 PM      | GRJ245   | [Session 1: Getting Started with R, RStudio, and swirl][2] |
 | 9/8/17  | 10 AM     | GRJ245   | [Session 2: Vectors, Missing Values, and Anki][3] |
 | 9/11/17 | 2 PM      | GRJ245   | [Session 3: Data Frames and R Markdown][4]  |
-| 9/15/17 | 10 AM     | GRJ245   | Session 4                                    |
+| 9/15/17 | 10 AM     | GRJ245   | [Session 4: Manipulating Data Frames with dplyr][5]     |
 
 [1]: 00_intro.html
 [2]: 01_basics.html
 [3]: 02_vectors_na_anki.html
 [4]: 03_rmarkdown_lookingatdata.html
+[5]: 04_dplyr.html

@@ -21,7 +21,7 @@ TO THE INSTRUCTOR:
 - Go over cards (but quickly, 15' for work, 15' for review)
 - Hand out R Markdown cheat sheet
 - In class: Reproduce the R Markdown document framingham.Rmd (hand out print out with
-  some of the code obscured)
+  some of the code obscured) *** Have class reproduce My First Rmd Doc instead of framingham! ***
 -->
 
 ## Session 3: Data Frames and R Markdown

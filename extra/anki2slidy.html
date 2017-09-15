@@ -812,10 +812,10 @@ hist(mtcars<span style="color: #666666">$</span>mpg)
 source_dir &lt;- &quot;/Users/skadauke/code/cdar_course&quot;
 dest_dir &lt;- &quot;/Users/skadauke/code/cdar_course/docs&quot;
 
-source_file &lt;- &quot;03_ankis.txt&quot;
+source_file &lt;- &quot;04_ankis.txt&quot;
 source_file_abs &lt;- file.path(source_dir, source_file)
 
-dest_root &lt;- &quot;03_ankis&quot;
+dest_root &lt;- &quot;04_ankis&quot;
 
 dest_file &lt;- paste0(dest_root, &quot;.html&quot;)
 dest_file_abs &lt;- file.path(dest_dir, dest_file)
@@ -835,7 +835,7 @@ deck &lt;- read_tsv(source_file_abs, col_names = c(&quot;front&quot;, &quot;back
  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
 &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt; 
 &lt;head&gt; 
-  &lt;title&gt;Session 3&lt;/title&gt; 
+  &lt;title&gt;Session 4&lt;/title&gt; 
   &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen, projection, print&quot; 
    href=&quot;https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css&quot; /&gt; 
   &lt;script src=&quot;https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js&quot; 
@@ -921,7 +921,7 @@ img[src*=&quot;latex&quot;] {
 </ol>
 <pre class="r"><code>title &lt;- '&lt;div class=&quot;slide cover&quot;&gt;
   &lt;br&gt;&lt;br&gt;
-  &lt;h1&gt;Session 3 - Data Frames&lt;/h1&gt;
+  &lt;h1&gt;Session 4 - dplyr&lt;/h1&gt;
 &lt;/div&gt;
 '</code></pre>
 <ol start="6" style="list-style-type: decimal">
@@ -953,7 +953,7 @@ for (i in 1:nrow(deck)) {
 images &lt;- str_match_all(slides, '&lt;img src=&quot;(.*?)&quot;')[[1]][,2]
 
 do.call(file.copy, args=list(file.path(img_dir, images), asset_dir_abs))</code></pre>
-<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 <pre class="r"><code>slides &lt;- str_replace_all(slides, '&lt;img src=&quot;', paste0('&lt;img src=&quot;', asset_dir, '/'))
 
 if (length(list.files(asset_dir_abs, all.files = TRUE, include.dirs = TRUE, no.. = TRUE)) == 0) {

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head> 
+  <title>Session 4</title> 
+  <link rel="stylesheet" type="text/css" media="screen, projection, print" 
+   href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
+   charset="utf-8" type="text/javascript"></script> 
+</head>
+<body>
+
+<style type="text/css">
+.card {
+  font-family: Arial;
+  font-size: 20px;
+  line-height: 1.3em;
+  margin: 30px 2px 10px 2px;
+  text-align: center;
+  color: black;
+  background-color: white;
+}
+
+code, pre, .c {
+  font-family: monospace;
+  padding: 0.2em 0em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  /* Overwrite ugly slidy CSS code */
+  font-weight: normal;
+  line-height: 1.3em;
+  border-style: none;
+  color: black;
+}
+
+.extra {
+  border: 2px solid #a1a1a1;
+  padding: 10px 40px;
+  background: #f3f4f8;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #cccccc;
+  font-size: 80%;
+}
+
+/* Resize large pictures to fit inside div */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[src*="latex"] {
+    vertical-align: middle;
+}
+
+.cloze {
+ font-weight: bold;
+ color: blue;
+}
+
+.highlight {
+    background: #ffffff; 
+    font-size: 85%;
+}
+
+@media print {
+  @page {
+    /* Hide page header and footer */
+    margin: 0;
+    size: 3in 5in landscape;
+  }
+  
+  /* Do not show answers on print-outs */
+  div.incremental {
+    display: none;
+  }
+}
+</style>
+
+<div class="slide cover">
+  <br><br>
+  <h1>Session 4 - dplyr</h1>
+</div>
+
+
+<div class="slide">
+  <div class="card">R: Please re-write the following expression using the pipe (<code class="myCodeClass">%&gt;%</code>) operator.<div><br /></div><div><center><code class="myCodeClass"></code><code class="myCodeClass">mean(is.na(age))</code> </center><div></div><div></div></div></div>
+  <div class="incremental">
+    <div class="card"><hr><center style="text-align: -webkit-auto;"><center style="text-align: -webkit-auto;"><center><code class="myCodeClass">age %&gt;% is.na() %&gt;% mean() </code></center></center></center>    <br><br> <div class="extra">The pipe operator is part of the <b>tidyverse</b> package which you may need to install and load before you can use it:<div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><p></p></pre></div></td></tr></tbody></table> <div style="display: inline-block; text-align: left"> <code class="myCodeClass"> install.packages("tidyverse")<br /> library(tidyverse) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</code></div><div><br /></div><div>The pipe operator aims to <b>improve readability</b>&nbsp;of complex data processing pipelines. Instead of having to read from the&nbsp;<b>inside-out</b>:</div><div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"></pre></div></td></tr></tbody></table><code class="myCodeClass">mean(is.na(age)) </code></center><br /></div><div>You can read the following from <b>left to right</b>.<b>&nbsp;</b>You can read the pipe operator as "<b>then</b>":</div><div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"></pre></div></td></tr></tbody></table><code class="myCodeClass">age %&gt;% is.na() %&gt;% mean() </code></center></div><div><br /></div><div>The pipe operator functions by using what's <b>before</b> the <code class="myCodeClass">%&gt;%</code> as the <b>first argument</b> of the function after the <code class="myCodeClass">%&gt;%</code>.</div><div><b><br /></b></div><div>Therefore the following two expressions are <b>equivalent</b>:</div><div><br /></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"></pre></div></td></tr></tbody></table> <div style="display: inline-block; text-align: left"> <code class="myCodeClass">age %&gt;% is.na()<br /> is.na(age) &nbsp; &nbsp;&nbsp;</code></div></center></div></center></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you are only interested in the <code class="myCodeClass">height</code> and <code class="myCodeClass">weight</code> columns.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, create a data frame <code class="myCodeClass">heights_weights</code> which contains the <code class="myCodeClass">height</code> and <code class="myCodeClass">weight</code> columns of <code class="myCodeClass">patients</code>.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">heights_weigths &lt;- patients %&gt;%<br /> &nbsp; select(height, weight) &nbsp; &nbsp; &nbsp;&nbsp;</code></div>    <br><br> <div class="extra"><code class="myCodeClass">select()</code> is one of the so-called<b>&nbsp;verbs</b>&nbsp;of <b>dplyr</b>.<div><br /></div><div><code class="myCodeClass">select()</code> takes as its first argument the data frame from which to select columns.&nbsp;</div><div><br /></div><div>In the above example, the pipe operator fills in that first argument, so the following would be equivalent:</div><div><br /><table><tbody><tr><td><div class="highlight" style="background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(248, 248, 248); background-position: initial initial; background-repeat: initial initial; "></div></td></tr></tbody></table></div><div><center><table><tbody><tr><td><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"></pre></div></td></tr></tbody></table><code class="myCodeClass">heights_weigths &lt;- select(patients, height, weight) </code></center><div><br /></div><div>The remaining arguments to <code class="myCodeClass">select()</code> refer to columns in patients that you'd like to select.</div><div><br /></div><div>Note that you don't have to type <code class="myCodeClass">patients$height</code>, <code class="myCodeClass">patients$weight</code>. The <code class="myCodeClass">select()</code> function knows you are referring to columns of the <code class="myCodeClass">patients</code> dataset.</div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you'd like to de-identify the data set.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, create a data frame&nbsp;<code class="myCodeClass">patients_deidentified</code>&nbsp;which contains all the same columns as&nbsp;<code class="myCodeClass">patients</code>&nbsp;except&nbsp;<code class="myCodeClass">name</code>.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients_deidentified &lt;- patients %&gt;%<br /> &nbsp; select(-name) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</code></div>    <br><br> <div class="extra">The <b>negative sign</b> in front of <code class="myCodeClass">name</code> tells <code class="myCodeClass">select()</code> that we don't want the <code class="myCodeClass">name</code> column (but all the others).</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you're only interested in patients younger than 30 years old.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, create a data frame&nbsp;<code class="myCodeClass">patients_less_than_30</code>&nbsp;which contains only the rows of <code class="myCodeClass">patients</code> whose <code class="myCodeClass">age</code> is less than <code class="myCodeClass">30</code>.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients_less_than_30 &lt;- patients %&gt;%<br /> &nbsp; filter(age &lt; 30) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</code></div>    <br><br> <div class="extra"><div><code class="myCodeClass">filter()</code> is the dplyr verb that selects specific rows from a data set.&nbsp;</div><div><br /></div><div>As is the case with <code class="myCodeClass">select()</code> (and in fact, <b>all</b>&nbsp;the dplyr verbs) the first argument is a data frame.&nbsp;</div><div><br /></div><div>The second argument, in this case <code class="myCodeClass">age &lt; 30</code> is a <b>condition</b>. <code class="myCodeClass">filter()</code> will return all rows for which that condition is <code class="myCodeClass">TRUE</code>.&nbsp;</div><div><br /></div>Note that <code class="myCodeClass">filter()</code> recognizes <code class="myCodeClass">age</code> as a column of <code class="myCodeClass">patients</code>, without you having to explicitly specify <code class="myCodeClass">patients$age</code>.</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you're interested in patients by the name Bill or Sean.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, create a data frame&nbsp;<code class="myCodeClass">bill_or_sean</code>&nbsp;which contains only the rows of&nbsp;<code class="myCodeClass">patients</code>&nbsp;whose&nbsp;<code class="myCodeClass">name</code>&nbsp;is either <code class="myCodeClass">Bill</code> or <code class="myCodeClass">Sean</code>.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">bill_or_sean &lt;- patients %&gt;% &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br /> &nbsp; filter(name == "Bill" | name == "Sean") </code></div>    <br><br> <div class="extra"><div>This example might seem contrived (and it is), but it touches on two important points:</div><div><br /></div><div>1. To <b>test for equality</b> use a <b>double equals sign</b>&nbsp;==.</div><div>2. You can create complex filtering operations by&nbsp;<b>chaining</b> multiple conditions together use the logical AND (<code class="myCodeClass">&amp;</code>) or OR (<code class="myCodeClass">|</code>) operators.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you'd like to sort the patients by age.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, create a data frame&nbsp;<code class="myCodeClass">patients_by_age</code>&nbsp;which contains the same data as&nbsp;<code class="myCodeClass">patients</code>&nbsp;but is sorted in ascending order, by&nbsp;<code class="myCodeClass">age</code>.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients_by_age &lt;- patients %&gt;%<br /> &nbsp; arrange(age) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</code></div>    <br><br> <div class="extra"><code class="myCodeClass">arrange()</code> is the dplyr verb that reorders rows of a data frame by the values of a specific column.<div><br /></div><div>It you specify two (or more) columns, the second column's values act as a tie-breaker for the first one, and so on.</div><div><br /></div><div>To sort in <b>descending</b>&nbsp;order use the <code class="myCodeClass">desc()</code> function:</div><div><br /></div> <div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients_by_age &lt;- patients %&gt;%<br /> &nbsp; arrange(desc(age)) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</code></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-9251359555706.jpg" /></div><div><br /></div><div>Assume you'd like to add column containing the body mass index (BMI) of each patient. The BMI is the weight (in kg) divided by the height (in m) squared.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, modify the data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;to add a column <code class="myCodeClass">bmi</code> which is equal to <code class="myCodeClass">weight / (height / 100) ^ 2</code></div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients &lt;- patients %&gt;% &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br /> &nbsp; mutate(bmi = weight / (height / 100) ^ 2) </code></div>    <br><br> <div class="extra"><div>Use <code class="myCodeClass">mutate()</code> to add one or more columns with new data to a data frame.&nbsp;</div><div><br /></div><div>The syntax is</div><div><br /></div> <div style="display: inline-block; text-align: left"> <code class="myCodeClass">mutate(data_frame, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br /> &nbsp; &nbsp; &nbsp; &nbsp;new_column_name_1 = expression_1,<br /> &nbsp; &nbsp; &nbsp; &nbsp;new_column_name_2 = expression_2,<br /> &nbsp; &nbsp; &nbsp; &nbsp;... &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br /> ) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</code></div><div><br /></div>As with all other dplyr verbs, <code class="myCodeClass">mutate()</code>'s first argument is the data frame on which it will operate. This first argument often gets supplied by the pipe (<code class="myCodeClass">%&gt;%</code>) operator.<div><br /></div><div>The remaining arguments specify the new column names as well as the values they will contain. R applies each expression individually to each row.&nbsp;</div><div><br /></div><div>For example, it calculates Bill's BMI from Bill's height and weight, and then Gina's BMI from Gina's height and weight, and so on.<br /><div><br /></div>Note that we are&nbsp;<b>modifying</b>&nbsp;the <code class="myCodeClass">patients</code> data frame by overwriting it with the output of the <code class="myCodeClass">mutate()</code> function.&nbsp;<div><br /></div><div>Why not create a new data frame such as <code class="myCodeClass">patients_with_bmi</code>? It's usually fine to modify data frames as long as you're not losing information. This prevents the creation of unnecessary variables which can be confusing.<br /></div></div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have a data frame&nbsp;<code class="myCodeClass">patients</code>&nbsp;with the following contents:<div><br /></div><div><img src="04_ankis_files/paste-42958262894715.jpg" /></div><div><br /></div><div>Let's say we're interested in the mean and standard deviation of the BMI of the patients, broken down by sex.</div><div><br /></div><div>Using the pipe operator and appropriate dplyr functions, do the following:</div> <div style="display: inline-block; text-align: left"> <ol style="line-height: 100%"><li>Group the <code class="myCodeClass">patients</code> data by <code class="myCodeClass">sex</code>, then</li> <li>Create a data frame with the following summary statistics:</li> <ol style="line-height: 100%"><li><code class="myCodeClass">n</code>: the number of cases in each group</li> <li><code class="myCodeClass">bmi_mean</code>: the mean of <code class="myCodeClass">bmi</code> of each group</li> <li><code class="myCodeClass">bmi_sd</code>: the standard deviation of <code class="myCodeClass">bmi</code> of each group</li></ol></ol></div><div>The resulting table should look like this:</div><div><br /></div><div><img src="04_ankis_files/paste-43581033152608.jpg" /></div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">patients %&gt;% &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br /> &nbsp; group_by(sex) %&gt;% &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br /> &nbsp; summarize(n = n(), &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bmi_mean = mean(bmi),<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bmi_sd = sd(bmi)) &nbsp; &nbsp;</code></div>    <br><br> <div class="extra">The <code class="myCodeClass">group_by()</code> and <code class="myCodeClass">summarize()</code> verbs are a powerful combination to <b>split</b> the data set into groups, <b>apply</b> a summary statistic, and <b>combine</b> the results in a new table.<div><br /></div><div>The syntax of <code class="myCodeClass">summarize()</code> is similar to <code class="myCodeClass">mutate()</code>: each expression specifies a <b>column name</b> (before an <code class="myCodeClass">=</code> sign) and the <b>values</b> that should be in the columns (after the <code class="myCodeClass">=</code> sign).&nbsp;</div><div><br /></div><div>The difference is instead of applying an expression to each individual row, <code class="myCodeClass">summarize()</code>&nbsp;uses values in <i>all</i>&nbsp;rows that fall into a particular group.</div><div><br /></div><div>Commonly used summary functions used inside of <code class="myCodeClass">summarize()</code> expressions include <code class="myCodeClass">mean()</code>, <code class="myCodeClass">sd()</code>, and <code class="myCodeClass">sum()</code>.&nbsp;</div><div><br /></div><div><code class="myCodeClass">n()</code> is a special summary function that returns the number of rows in each group.</div></div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">R: suppose you have the following two data frames:<div><br /></div><div><img src="04_ankis_files/paste-47837345742993.jpg" /></div><div><br /></div><div>Let's say we want to augment <code class="myCodeClass">bmi_data</code> with a column <code class="myCodeClass">name</code> containing the patient name, identified by the column <code class="myCodeClass">id </code> that is present in both tables.</div><div><br /></div><div>Join <code class="myCodeClass">bmi_data</code> and <code class="myCodeClass">patients</code>&nbsp;to add a new column <code class="myCodeClass">name</code> to <code class="myCodeClass">bmi_data</code>, using <code class="myCodeClass">id</code> as the <i>key</i> to join on. Use the pipe operator where appropriate. Overwrite&nbsp;<code class="myCodeClass">bmi_data</code>&nbsp;with the result.</div></div>
+  <div class="incremental">
+    <div class="card"><hr><div style="display: inline-block; text-align: left"> <code class="myCodeClass">bmi_data &lt;- bmi_data %&gt;% &nbsp; &nbsp; &nbsp;<br /> &nbsp; left_join(patients, by="id") </code></div>    <br><br> <div class="extra">Use <code class="myCodeClass">left_join()</code> to augment a data frame with information from another data frame. It's the most useful of the various join functions, because it works well in expressions that use the pipe (<code class="myCodeClass">%&gt;%</code>) operator.<div><br /></div><div>The syntax is:</div><div><br /></div> <div style="display: inline-block; text-align: left"> <code class="myCodeClass">left_join(table_to_augment, &nbsp; &nbsp; &nbsp;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; table_to_augment_with,&nbsp;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; by = "key_column") &nbsp; &nbsp;&nbsp;</code></div><div style="text-align: -webkit-auto;"><br /></div><div style="text-align: -webkit-auto;">In the present example we use the pipe (<code class="myCodeClass">%&gt;%</code>) operator to pass in the table to augment as the first argument.&nbsp;</div><div><br /></div><div><code class="myCodeClass">left_join()</code> returns a new data frame with all the rows of the first data frame with additional columns matched from the second data frame.&nbsp;</div><div><br /></div><div>If a row from the first data frame doesn't have a match, R will place an <code class="myCodeClass">NA</code> in the appropriate place.&nbsp;</div><div><br /></div><div>If a row from the second data frame doesn't match, R will ignore it.</div></div></div>
+  </div>
+</div>
+
+</body>
+</html>
+

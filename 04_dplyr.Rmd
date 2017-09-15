@@ -5,9 +5,12 @@ output: html_document
 <!-- 
 
 TO DO:
+- Review Ankis and create .html, .pdf, .apkg
+- Upload and link code book
 
 TO THE INSTRUCTOR:
-
+- Go over the few dplyr cards
+- Have everyone download and load the Rmd document, answer the questions, and fill in the prompts
 
 -->
 
@@ -29,26 +32,26 @@ TO THE INSTRUCTOR:
 
 Please view the following:
 
-* **[4 min]** [The Pipe Operator](https://www.youtube.com/watch?v=9yjhxvu-pDg) (Ben Stenhaug)
-* **[10 min]** [The 5 Verbs of dplyr](https://www.youtube.com/watch?v=sVISY_27znA) (Ben Stenhaug)
-* **[3 min]** [Understanding Joins](https://www.youtube.com/watch?v=Eqvm9KYWEO4) (Garrett Grolemund, DataCamp)
+* **[4 min]** [The Pipe Operator](https://www.youtube.com/watch?v=9yjhxvu-pDg) (Ben Stenhaug, Stanford)
+* **[10 min]** [The 5 Verbs of dplyr](https://www.youtube.com/watch?v=sVISY_27znA) (Ben Stenhaug, Stanford)
+* **[3 min]** [Understanding Joins](https://www.youtube.com/watch?v=Eqvm9KYWEO4) (Garrett Grolemund, RStudio, DataCamp)
 
-Swirl modules:
-
-* Please install the **Getting and Cleaning Data** swirl course by issuing the following commands in R:
+Please install the **Getting and Cleaning Data** swirl course by issuing the following commands in R:
 ```{r, eval=FALSE}
 library(swirl)
 install_course("Getting and Cleaning Data")
 ```
-* Getting and Cleaning Data: Manipulating Data with dplyr[^1]
+
+Swirl modules:
+
+* Getting and Cleaning Data: Manipulating Data with dplyr
 * Getting and Cleaning Data: Grouping and Chaining with dplyr
 
-[^1]: Note that when you're asked whether you'd like credit on Coursera.org please say "no".
-
-<!--
 ### Materials
 
-* [Session x slides (Slidy)](x_ankis.html)
-* [Session x hand-out (no answers)](x_ankis_no_answers.pdf)
-* [Session x Anki cards (.apkg)](x_ankis.apkg)
--->
+* [Framingham data set (Excel)](framingham.xlsx)
+* <a href="framingham_no_answers.Rmd" download="framingham_no_answers.Rmd">Framingham Case Study (Rmd, no answers)</a> <!-- Force download to prevent showing Rmd in browser -->
+* [Framingham Case Study Code Book (PDF)](framingham_code_book.pdf)
+* [Session 4 slides (Slidy)](04_ankis.html)
+* [Session 4 hand-out (no answers)](04_ankis_no_answers.pdf)
+* [Session 4 Anki cards (.apkg)](04_ankis.apkg)

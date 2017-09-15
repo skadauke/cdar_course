@@ -313,10 +313,10 @@ Note: the below specifies a default test file so you might want to change to cha
 source_dir <- "/Users/skadauke/code/cdar_course"
 dest_dir <- "/Users/skadauke/code/cdar_course/docs"
 
-source_file <- "03_ankis.txt"
+source_file <- "04_ankis.txt"
 source_file_abs <- file.path(source_dir, source_file)
 
-dest_root <- "03_ankis"
+dest_root <- "04_ankis"
 
 dest_file <- paste0(dest_root, ".html")
 dest_file_abs <- file.path(dest_dir, dest_file)
@@ -340,7 +340,7 @@ slidy_header <- '<?xml version="1.0" encoding="utf-8"?>
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
 <head> 
-  <title>Session 3</title> 
+  <title>Session 4</title> 
   <link rel="stylesheet" type="text/css" media="screen, projection, print" 
    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" /> 
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js" 
@@ -427,7 +427,7 @@ img[src*="latex"] {
 ```{r}
 title <- '<div class="slide cover">
   <br><br>
-  <h1>Session 3 - Data Frames</h1>
+  <h1>Session 4 - dplyr</h1>
 </div>
 '
 ```
